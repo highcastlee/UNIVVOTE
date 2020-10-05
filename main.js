@@ -126,3 +126,71 @@ window.addEventListener('load',function(){
     new numberCounter("countLeft",3765, 53, false);
     new numberCounter("countRight",3765, 53, false);
 });
+
+
+function Like(btnId,countId){
+    this.objBtn = document.getElementById(btnId);
+    this.objCount = document.getElementById(countId);
+    this.count = 0;
+    this.isLiked = false;
+    return;
+}
+
+Like.prototype={
+    getCount : function(){return this.count;},
+    setCount : function(x){this.count = x;},
+    getIsLiked : function(){return this.isLiked;},
+    changeLikeCount : function(){
+        if(this.isLiked){
+            this.objCount.textContent=--this.count;
+        }else{
+            this.objCount.textContent=++this.count;
+        }
+    },
+    changeLikeBtn : function(){
+        if(this.isLiked){
+            this.objBtn.style.backgroundImage = 'url(image/heartBlue.svg)';
+        }else{
+            this.objBtn.style.backgroundImage = 'url(image/heartRed.svg)';
+        }
+    },
+    changeLikeState : function(){
+        if(this.isLiked){
+            this.isLiked=false;
+        }else{
+            this.isLiked=true;
+        }
+    },
+    setClickEvent : function(){
+        this.changeLikeBtn();
+        this.changeLikeCount();
+        this.changeLikeState();
+    }
+}
+
+var likeBtnLeft_01 = new Like('pledgeLikeBtnLeft-01','pledgeLikeCountLeft-01');
+var likeBtnLeft_02 = new Like('pledgeLikeBtnLeft-02','pledgeLikeCountLeft-02');
+var likeBtnLeft_03 = new Like('pledgeLikeBtnLeft-03','pledgeLikeCountLeft-03');
+
+var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01');
+var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
+var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
+
+likeBtnLeft_01.objBtn.addEventListener('click',function(){
+    likeBtnLeft_01.setClickEvent();
+});
+likeBtnLeft_02.objBtn.addEventListener('click',function(){ 
+    likeBtnLeft_02.setClickEvent();
+});
+likeBtnLeft_03.objBtn.addEventListener('click',function(){
+    likeBtnLeft_03.setClickEvent();
+});
+likeBtnRight_01.objBtn.addEventListener('click',function(){
+    likeBtnRight_01.setClickEvent();
+});
+likeBtnRight_02.objBtn.addEventListener('click',function(){ 
+    likeBtnRight_02.setClickEvent();
+});
+likeBtnRight_03.objBtn.addEventListener('click',function(){
+    likeBtnRight_03.setClickEvent();
+});
