@@ -1,3 +1,4 @@
+// const { url } = require("inspector");
 
 var mainTitle = document.getElementById('main-title');
 mainTitle.addEventListener('click',function(){
@@ -8,48 +9,40 @@ if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
 }
 
-var openModal = function(id) {
-    let modal = document.getElementById(id);
-    modal.setAttribute("style","display:block; z-Index:999; animation: modal-fadein 1s;");
+function Modal(id){
+    this.obj = document.getElementById(id);
 }
 
-var closeModal = function(id,fadeout){
-    let modal = document.getElementById(id);
-    if(fadeout==true){
-        modal.setAttribute("style","display:block; z-Index:999; animation: modal-fadeout 1.3s;")
-        setTimeout(function(){
-            modal.setAttribute("style","display:none;");
-        },1000);
-    }else if(fadeout==false){
-        modal.setAttribute("style","display:none;");
-    };
-};
+Modal.prototype.openModal = function(){
+    this.obj.setAttribute("style","display:block; z-Index:999; animation: modal-fadein 1s;");
+}
+Modal.prototype.closeModal = function(){
+    this.obj.setAttribute("style","display:none;");
+}
+Modal.prototype.fadeoutCloseModal = function(){;
+    this.obj.setAttribute("style","display:block; z-Index:999; animation: modal-fadeout 1.3s;");
+    this.fadeoutDelay();
+}
+Modal.prototype.fadeoutDelay = function(){
+    setTimeout(()=>{;
+        this.closeModal();
+    },1000);
+}
 
-const sharingBtn = document.getElementById("sharingIcon");
+
+
+const sharingBtn = document.getElementById("sharingBtn");
+const urlModal = new Modal('urlModal');
 sharingBtn.addEventListener('click',function(){
-    openModal('urlModal');
+    urlModal.openModal();
     CopyUrlToClipboard();
-    setTimeout(function(){
-        closeModal('urlModal',true);
-    },1500);
-});
-
-
-const voteBtn = document.getElementById("voteBtn");
-voteBtn.addEventListener('click',function(){
-    openModal('voteModal');
-});
-
-
-
-const backIcon = document.getElementById('backIconBox');
-backIcon.addEventListener('click',function(){
-    closeModal('voteModal',false);
+    setTimeout(()=>{
+        urlModal.fadeoutCloseModal();
+    },2000);
 });
 
 var urlText = document.getElementById("urlText");
 urlText.value = window.document.location.href;
-
 var CopyUrlToClipboard = function (){
 	urlText.select();  // 해당 값이 선택되도록 select() 합니다
 	document.execCommand("copy"); // 클립보드에 복사합니다.
@@ -57,12 +50,33 @@ var CopyUrlToClipboard = function (){
 };
 
 
-
-const submitButton = document.getElementById('voteForm');
-submitButton.addEventListener('submit',function(e){
-    // alert("꼭 오프라인 투표로 소중한 한 표를 행사해주세요!");
-    // e.preventDefault();
+const voteBtn = document.getElementById("voteBtn");
+const backBtnBox = document.getElementsByClassName('back-btn-box');
+const voteModal = new Modal('voteModal');
+voteBtn.addEventListener('click',function(){
+    voteModal.openModal();
 });
+for(let i = 0; i<backBtnBox.length;i++){
+    backBtnBox[i].addEventListener('click',function(){
+        if(i==0){
+            voteModal.closeModal();
+        }else if(i==1){
+            writeModal.closeModal();
+        }
+    });
+}
+
+
+const writeBtn = document.getElementById('writeBtn');
+const writeModal = new Modal('writeModal');
+writeBtn.addEventListener('click',function(){
+    writeModal.openModal();
+})
+
+
+
+
+
 
 var checkSelf = function(obj){
     if(obj.getAttribute('checked')=='true'){
@@ -128,6 +142,8 @@ window.addEventListener('load',function(){
 });
 
 
+
+
 function Like(btnId,countId){
     this.objBtn = document.getElementById(btnId);
     this.objCount = document.getElementById(countId);
@@ -140,6 +156,11 @@ Like.prototype={
     getCount : function(){return this.count;},
     setCount : function(x){this.count = x;},
     getIsLiked : function(){return this.isLiked;},
+    setClickEvent : function(){
+        this.changeLikeBtn();
+        this.changeLikeCount();
+        this.changeLikeState();
+    },
     changeLikeCount : function(){
         if(this.isLiked){
             this.objCount.textContent=--this.count;
@@ -149,9 +170,9 @@ Like.prototype={
     },
     changeLikeBtn : function(){
         if(this.isLiked){
-            this.objBtn.style.backgroundImage = 'url(image/heartBlue.svg)';
+            this.objBtn.style.backgroundImage = 'url(image/heartBlue.png)';
         }else{
-            this.objBtn.style.backgroundImage = 'url(image/heartRed.svg)';
+            this.objBtn.style.backgroundImage = 'url(image/heartRed.png)';
         }
     },
     changeLikeState : function(){
@@ -160,11 +181,6 @@ Like.prototype={
         }else{
             this.isLiked=true;
         }
-    },
-    setClickEvent : function(){
-        this.changeLikeBtn();
-        this.changeLikeCount();
-        this.changeLikeState();
     }
 }
 
@@ -176,7 +192,9 @@ var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01'
 var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
 var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
 
-likeBtnLeft_01.objBtn.addEventListener('click',function(){
+
+
+likeBtnLeft_01.objBtn.addEventListener('click',function(){ 
     likeBtnLeft_01.setClickEvent();
 });
 likeBtnLeft_02.objBtn.addEventListener('click',function(){ 

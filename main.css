@@ -80,6 +80,16 @@ body{
     opacity: 0.6;
     z-index: 1;
 }
+.modal-box{
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 1.6rem;
+    background: rgb(25, 31, 44);
+    z-index: 10000;
+    border-radius: 1.5rem;
+}
 .modal-header{
     display: flex;
     position: relative;
@@ -95,7 +105,7 @@ body{
     text-align: center;
 }
 
-#backIconBox{
+.back-btn-box{
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -115,14 +125,14 @@ body{
     height: 3.2rem;
     padding: 0;
 }
-#backIcon{
+.back-btn{
     position: relative;
     flex-shrink: 0;
     height: 1.5rem;
     width: 1.5rem;
     opacity: 0.5;
 }
-#backIcon:hover{
+.back-btn:hover{
     opacity: 1;
 }
 
@@ -131,19 +141,12 @@ body{
 #urlModal{
     display:none;
 }
+
 .modal-box-url{
-    position: fixed;
-    left: 50%;
     top: 18%;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
     max-height: 80%;
-    padding: 1.6rem;
-    background: rgb(25, 31, 44);
-    z-index: 10000;
-    border-radius: 1.5rem;
-    width: 25rem;
     height: 5.8rem;
+    width: 25rem;
 }
 #urlText{
     border-top: none;
@@ -165,19 +168,11 @@ body{
 }
 
 .modal-box-vote{
-    position: fixed;
-    left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
     max-height: 60%;
-    padding: 1.6rem;
-    background: rgb(25, 31, 44);
-    z-index: 10000;
-    border-radius: 1.5rem;
     width: 32rem;
 }
-#modalVoteTitle{
+.modal-title{
     text-align: center;
     font-size: 1.5rem;
     font-family: 'Jua', sans-serif;
@@ -193,7 +188,9 @@ body{
     flex-direction: row;
     justify-content: space-around;
 }
-
+#modal-candidate-left, #modal-candidate-right{
+    cursor: pointer;
+}
 input[type="checkbox"] {
     display:none;
 }
@@ -216,7 +213,7 @@ input[type="checkbox"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
 }
 
-#voteSubmit{
+.submit-btn{
     background-color:#5259df;
     color: white;
     margin-top: 2rem;
@@ -232,7 +229,41 @@ input[type="checkbox"]:checked + label span {
 #voteSubmit:hover{
     background-color:#9c0000;
 }
-
+/* write Modal 영역*/
+#writeModal{
+    display:none;
+}
+.modal-box-write{
+    top: 50%;
+    max-height: 60%;
+    width: 32rem;
+}
+.modal-blank{
+    width: 3rem;
+}
+#writeContent{
+    height: 10rem;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-image: initial;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(224, 224, 224, 0.125);
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0px;
+    appearance: none;
+    width:100%;
+    color: white;
+    resize: none;
+    font-family: 'Jua', sans-serif;
+}
+#writeContent::-webkit-scrollbar{
+    display: none;
+}
+#writeContent:focus{
+    outline: none;
+}
 /* 본문 영역 */
 #header{
     background-color:   rgb(25,31,44);;
@@ -276,7 +307,7 @@ input[type="checkbox"]:checked + label span {
     cursor: pointer;
     
 }
-#sharingIcon:hover{
+#sharingBtn:hover{
     cursor: pointer;
 }
 
@@ -316,7 +347,7 @@ input[type="checkbox"]:checked + label span {
 }
 .section-title :nth-child(2){
     margin-top:0rem;
-    font-size:1.1rem;
+    font-size:1.3rem;
     
 }
 .section-img-01{
@@ -546,12 +577,12 @@ input[type="checkbox"]:checked + label span {
     width:1rem;
     height: 1rem;
     vertical-align: unset;
-    background-image: url(image/heartBlue.svg);
+    background-image: url(image/heartBlue.png);
     background-size: 1rem 1rem;
 }
 .pledge-like-btn:hover{
     cursor: pointer;
-    background-image: url(image/heartRed.svg);
+    background-image: url(image/heartRed.png);
     background-size: 1rem 1rem;
 }
 .pledge-like-count{
@@ -591,7 +622,7 @@ input[type="checkbox"]:checked + label span {
     margin-top: 2rem;
 }
 
-#messageBtn{
+#writeBtn{
     background-color:#5259df;
     color: white;
     padding: 1.2rem 1.2rem;
@@ -608,7 +639,7 @@ input[type="checkbox"]:checked + label span {
     -webkit-animation: fadein 2s; 
      -o-animation: fadein 2s; 
 }
-#messageBtn:hover{
+#writeBtn:hover{
     background-color: rgba(53, 0, 199, 0.911);
 }
 .footer{
