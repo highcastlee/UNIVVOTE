@@ -212,3 +212,34 @@ likeBtnRight_02.objBtn.addEventListener('click',function(){
 likeBtnRight_03.objBtn.addEventListener('click',function(){
     likeBtnRight_03.setClickEvent();
 });
+
+
+function writeTemplate(){
+    let list = document.getElementById('writeList');
+    if(list.childElementCount < 4){
+        const contentDiv = document.createElement('div');
+        contentDiv.className='crud-content'
+        const userDiv = document.createElement('div');
+        userDiv.className='content-user'
+        const userName = document.createElement('span');
+        userName.textContent = '김아무개 | ';
+        const date = document.createElement('span');
+        let localDate = new Date();
+        date.textContent = localDate.toLocaleDateString();
+        const writeDiv = document.createElement('div');
+        const writeContent = document.createElement('p');
+        writeContent.className='content-text'
+        writeContent.textContent = "총학생회에 응원의 메시지를 남겨주세요!";
+        userDiv.appendChild(userName);
+        userDiv.appendChild(date);
+        writeDiv.appendChild(writeContent);
+        contentDiv.appendChild(userDiv);
+        contentDiv.appendChild(writeDiv);
+        list.appendChild(contentDiv);
+        writeTemplate();
+        console.log("템플릿 실행");
+    }
+    return;
+};
+writeTemplate();
+

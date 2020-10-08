@@ -94,7 +94,7 @@
                 <div class='modal-blank'></div>
             </div>
             <form id='writeForm' class='modal-form' method="POST">
-                <textarea id='writeContent' name="mb_self" rows="5" cols="30" maxlength="100" placeholder="내용을 입력하세요"></textarea>
+                <textarea id='writeContent' name="mb_self" rows="5" cols="30" maxlength="50" placeholder="내용을 입력하세요"></textarea>
                 <input id='writeSubmit' class='submit-btn' type="submit" value='write'/>
             </form>
         </div>
@@ -161,7 +161,7 @@
                     <div class='sns-box'>
                         <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
                         <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                        <a href='https://www.youtube.com'><img src='image/youtube.svg'/></a>
+                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
                     </div>
                     <div class='pledge-box'>
                         <div class='pledge-small-box'>
@@ -197,7 +197,7 @@
                     <div class='sns-box'>
                         <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
                         <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                        <a href='https://www.youtube.com'><img src='image/youtube.svg'/></a>
+                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
                     </div>
                     <div class='pledge-box'>
                         <div class='pledge-small-box'>
@@ -234,43 +234,7 @@
             <div class='section-title'>
                 <p>총학생회에 바라는 점</p>
             </div>
-            <div class='crud-box' id='list'>
-                <div class='crud-content'>
-                    <div class='content-user'>
-                        <span>차쑤기 |</span>
-                        <span>2020-11-01 12:38</span>
-                    </div>
-                    <div class='content-text'>
-                        <p>총학생회 항상 응원합니다 :)</p>
-                    </div>
-                </div>
-                <div class='crud-content'>
-                    <div class='content-user'>
-                        <span>차쑤기 |</span>
-                        <span>2020-11-01 12:38</span>
-                    </div>
-                    <div class='content-text'>
-                        <p>총학생회 항상 응원합니다 :)</p>
-                    </div>
-                </div>
-                <div class='crud-content'>
-                    <div class='content-user'>
-                        <span>차쑤기 |</span>
-                        <span>2020-11-01 12:38</span>
-                    </div>
-                    <div class='content-text'>
-                        <p>총학생회 항상 응원합니다 :)</p>
-                    </div>
-                </div>
-                <div class='crud-content'>
-                    <div class='content-user'>
-                        <span>차쑤기 |</span>
-                        <span>2020-11-01 12:38</span>
-                    </div>
-                    <div class='content-text'>
-                        <p>총학생회 항상 응원합니다 :)</p>
-                    </div>
-                </div>
+            <div class='crud-box' id='writeList'>
             </div>
             <div class='crud-btn-box'>
                 <button id='writeBtn' value='message'>작성하기</button>
@@ -289,7 +253,7 @@ highcastle4242@naver.com</pre>
         </div>
     </footer>
     <script src="main.js" ></script>
-    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src='./restFront.js'></script> -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src='./form.js'></script>
 </body>
 </html>
