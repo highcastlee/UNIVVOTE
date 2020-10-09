@@ -50,43 +50,41 @@ var CopyUrlToClipboard = function (){
 };
 
 
-const voteBtn = document.getElementById("voteBtn");
 const backBtnBox = document.getElementsByClassName('back-btn-box');
+
+const voteBtn = document.getElementById("voteBtn");
 const voteModal = new Modal('voteModal');
 voteBtn.addEventListener('click',function(){
     voteModal.openModal();
 });
-for(let i = 0; i<backBtnBox.length;i++){
-    backBtnBox[i].addEventListener('click',function(){
-        if(i==0){
-            voteModal.closeModal();
-        }else if(i==1){
-            writeModal.closeModal();
-        }
-    });
-}
-
-
 const writeBtn = document.getElementById('writeBtn');
 const writeModal = new Modal('writeModal');
 writeBtn.addEventListener('click',function(){
     writeModal.openModal();
 })
 
+//if문 구분 함수 리팩토링 필요함..
+for(let i = 0; i<backBtnBox.length;i++){
+    backBtnBox[i].addEventListener('click',function(){
+        if(i==0){
+            voteModal.closeModal();
+        }else if(i==1){
+            writeModal.closeModal();
+        }else{
+            return;
+        }
+    });
+}
 
 
-
-
-
-var checkSelf = function(obj){
+var checkDouble = function(obj){
     if(obj.getAttribute('checked')=='true'){
         obj.removeAttribute('checked');
     }else{
         obj.setAttribute('checked','true');
     }
 };
-
-var checkOther = function(obj){
+var checkAnother = function(obj){
     if(obj.getAttribute('checked')=='true'){
         obj.removeAttribute('checked');
     };
@@ -97,12 +95,12 @@ const inputRight = document.getElementById('inputRight');
 const checkBoxLeft = document.getElementById('modal-candidate-left');
 const checkBoxRight = document.getElementById('modal-candidate-right');
 checkBoxLeft.addEventListener('click',function(){
-    checkOther(inputRight);
-    checkSelf(inputLeft);
+    checkAnother(inputRight);
+    checkDouble(inputLeft);
 });
 checkBoxRight.addEventListener('click',function(){
-    checkOther(inputLeft);
-    checkSelf(inputRight);
+    checkAnother(inputLeft);
+    checkDouble(inputRight);
 });
 
 
@@ -214,32 +212,5 @@ likeBtnRight_03.objBtn.addEventListener('click',function(){
 });
 
 
-function writeTemplate(){
-    let list = document.getElementById('writeList');
-    if(list.childElementCount < 4){
-        const contentDiv = document.createElement('div');
-        contentDiv.className='crud-content'
-        const userDiv = document.createElement('div');
-        userDiv.className='content-user'
-        const userName = document.createElement('span');
-        userName.textContent = '김아무개 | ';
-        const date = document.createElement('span');
-        let localDate = new Date();
-        date.textContent = localDate.toLocaleDateString();
-        const writeDiv = document.createElement('div');
-        const writeContent = document.createElement('p');
-        writeContent.className='content-text'
-        writeContent.textContent = "총학생회에 응원의 메시지를 남겨주세요!";
-        userDiv.appendChild(userName);
-        userDiv.appendChild(date);
-        writeDiv.appendChild(writeContent);
-        contentDiv.appendChild(userDiv);
-        contentDiv.appendChild(writeDiv);
-        list.appendChild(contentDiv);
-        writeTemplate();
-        console.log("템플릿 실행");
-    }
-    return;
-};
-writeTemplate();
+
 
