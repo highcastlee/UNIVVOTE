@@ -625,7 +625,7 @@ input[type="checkbox"]:checked + label span {
 }
 .content-user{
     display: inline-block;
-    width:20rem;
+    width:28rem;
 }
 .content-text{
     font-size: 1.2rem;
@@ -690,7 +690,7 @@ input[type="checkbox"]:checked + label span {
 @keyframes fadein {
     from {
         opacity:0;
-        transform:translateY(10px);
+        transform:translateY(5px);
     }
     to {
         opacity:1;
@@ -708,7 +708,7 @@ input[type="checkbox"]:checked + label span {
 @-webkit-keyframes fadein { /* Safari and Chrome */
     from {
         opacity:0;
-        transform:translateY(10px);
+        transform:translateY(5px);
     }
     to {
         opacity:1;
@@ -718,7 +718,7 @@ input[type="checkbox"]:checked + label span {
 @-o-keyframes fadein { /* Opera */
     from {
         opacity:0;
-        transform:translateY(10px);
+        transform:translateY(5px);
     }
     to {
         opacity: 1;

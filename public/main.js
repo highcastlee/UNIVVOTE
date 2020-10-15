@@ -1,4 +1,3 @@
-// const { url } = require("inspector");
 
 var mainTitle = document.getElementById('main-title');
 mainTitle.addEventListener('click',function(){
@@ -50,13 +49,13 @@ var CopyUrlToClipboard = function (){
 };
 
 
-const backBtnBox = document.getElementsByClassName('back-btn-box');
 
 const voteBtn = document.getElementById("voteBtn");
 const voteModal = new Modal('voteModal');
 voteBtn.addEventListener('click',function(){
     voteModal.openModal();
 });
+
 const writeBtn = document.getElementById('writeBtn');
 const writeModal = new Modal('writeModal');
 writeBtn.addEventListener('click',function(){
@@ -64,6 +63,7 @@ writeBtn.addEventListener('click',function(){
 })
 
 //if문 구분 함수 리팩토링 필요함..
+const backBtnBox = document.getElementsByClassName('back-btn-box');
 for(let i = 0; i<backBtnBox.length;i++){
     backBtnBox[i].addEventListener('click',function(){
         if(i==0){
@@ -75,6 +75,79 @@ for(let i = 0; i<backBtnBox.length;i++){
         }
     });
 }
+
+
+function numberCounter(target_frame, target_number,plus_number,Is_float) {
+    this.count = 0.0; this.diff = 0;
+    this.plus = plus_number;
+    this.Isfloat = Is_float;
+    this.target_count = parseFloat(target_number).toFixed(this.Isfloat);
+    this.target_frame = document.getElementById(target_frame);
+    this.timer = null;
+    this.counter();
+};
+numberCounter.prototype.counter = function() {
+    var self = this;
+    this.diff = this.target_count - this.count;
+    this.diff = this.diff
+    if(this.diff > 0) {
+        self.count += this.plus;
+    }
+    this.target_frame.innerHTML = this.count.toFixed(this.Isfloat).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    if(this.count < this.target_count) {
+        this.timer = setTimeout(function() { self.counter(); }, 30);
+    } else {
+        this.target_frame.innerHTML = this.target_count;
+        clearTimeout(this.timer);
+    }
+};
+
+
+
+function calculater(count,sum){
+    this.count = count;
+    this.sum = sum;
+};
+calculater.prototype.calcPercent = function(){
+    return this.count/this.sum*100;
+};
+
+// const leftCount = new calculater(candidateLeftCount,sum);
+// const rightCount = new calculater(candidateRightCount,sum);
+// leftPercent = leftCount.calcPercent();
+// rightPercent = rightCount.calcPercent();
+// // console.log(leftPercent);
+
+// window.addEventListener('load',function(){
+
+// });
+// JSON으로 득표 수 각각 받아서 입력
+
+let voteInfo, voteParsed, candidateLeftCount, candidateRightCount =0;
+var req = new XMLHttpRequest();
+var jsonObj;
+req.responseType = 'text';
+req.open("GET","voteInfo.json",true);
+req.send(null);
+req.addEventListener("load",function(){
+    jsonObj = req.responseText;
+    // console.log(jsonObj);
+    voteInfo = jsonObj;
+    voteParsed = JSON.parse(voteInfo);
+    candidateLeftCount = voteParsed.candidate_01;
+    candidateRightCount = voteParsed.candidate_02;
+    let sum = candidateLeftCount + candidateRightCount;
+    
+    let leftCount = new calculater(candidateLeftCount,sum);
+    let rightCount = new calculater(candidateRightCount,sum);
+    let leftPercent = leftCount.calcPercent();
+    let rightPercent = rightCount.calcPercent();
+    
+    new numberCounter("percentLeft", leftPercent, 1.1,true);
+    new numberCounter("percentRight", rightPercent, 1.1,true);
+    new numberCounter("countLeft",candidateLeftCount, 7, false);
+    new numberCounter("countRight",candidateRightCount, 7, false);
+},false);
 
 
 var checkDouble = function(obj){
@@ -105,38 +178,44 @@ checkBoxRight.addEventListener('click',function(){
 
 
 
+document.getElementById('voteForm').addEventListener('submit',async (e)=>{
+    e.preventDefault();
+    getVoting(e);
+    // console.log(e.target);
+    
+});
 
+async function getVoting(e){
+    const candidate_01 = e.target.inputLeft.checked;
+    const candidate_02 = e.target.inputRight.checked;
+    console.log(candidate_01);
+    console.log(candidate_02);
+    if(!(candidate_01 || candidate_02)){
+        return alert('후보자를 선택하세요');
+    }
+    try{
+        const isVoted = true;
+        await axios.post('/vote',{candidate_01,candidate_02});
+        await axios.post('/user',{isVoted});
+        // location.reload();
+    }catch(err){
+        console.error(err);
+    }
+}
 
-function numberCounter(target_frame, target_number,plus_number,Is_float) {
-    this.count = 0.0; this.diff = 0;
-    this.plus = plus_number;
-    this.Isfloat = Is_float;
-    this.target_count = parseFloat(target_number).toFixed(this.Isfloat);
-    this.target_frame = document.getElementById(target_frame);
-    this.timer = null;
-    this.counter();
-};
-numberCounter.prototype.counter = function() {
-    var self = this;
-    this.diff = this.target_count - this.count;
-    this.diff = this.diff
-    if(this.diff > 0) {
-        self.count += this.plus;
+document.getElementById('writeForm').addEventListener('submit',async (e)=>{
+    e.preventDefault();
+    const name= e.target.writeContent.value;
+    if(!name){
+        return alert('내용을 입력하세요');
     }
-    this.target_frame.innerHTML = this.count.toFixed(this.Isfloat).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    if(this.count < this.target_count) {
-        this.timer = setTimeout(function() { self.counter(); }, 30);
-    } else {
-        this.target_frame.innerHTML = this.target_count;
-        clearTimeout(this.timer);
+    try{
+        // await axios.post('/users',{name});
+        // getUser();
+        // location.reload();
+    }catch(err){
+        console.error(err);
     }
-};
-// numberCounter 2번째 인수에 JSON으로 투표 비율 받아서 입력
-window.addEventListener('load',function(){
-    new numberCounter("percentLeft", 45.7, 1.1,true);
-    new numberCounter("percentRight", 47.8, 1.1,true);
-    new numberCounter("countLeft",3765, 53, false);
-    new numberCounter("countRight",3765, 53, false);
 });
 
 
