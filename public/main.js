@@ -177,42 +177,45 @@ checkBoxRight.addEventListener('click',function(){
 });
 
 
-
-document.getElementById('voteForm').addEventListener('submit',async (e)=>{
-    e.preventDefault();
-    getVoting(e);
-    // console.log(e.target);
-    
-});
-
-async function getVoting(e){
-    const candidate_01 = e.target.inputLeft.checked;
-    const candidate_02 = e.target.inputRight.checked;
-    console.log(candidate_01);
-    console.log(candidate_02);
-    if(!(candidate_01 || candidate_02)){
-        return alert('후보자를 선택하세요');
-    }
-    try{
-        const isVoted = true;
-        await axios.post('/vote',{candidate_01,candidate_02});
-        await axios.post('/user',{isVoted});
-        // location.reload();
-    }catch(err){
-        console.error(err);
+const isChecked = function(bool){
+    if(bool){
+        return 1;
+    }else{
+        return 0;
     }
 }
 
+document.getElementById('voteForm').addEventListener('submit',async (e)=>{
+    e.preventDefault();
+    //체크된 후보는 1, 아닌 후보는 0을 넘김
+    const candidate_01 = isChecked(e.target.inputLeft.checked);
+    const candidate_02 = isChecked(e.target.inputRight.checked);
+    if(!(candidate_01 || candidate_02)){
+        return alert('후보자를 선택하세요');
+    }
+    //선택된 전공의 majorId 값을 넘김
+    const major = e.target.userMajor;
+    const majorId = major.options[major.selectedIndex].value;
+    try{
+        await axios.post('/vote',{candidate_01,candidate_02,majorId});
+        location.reload();
+    }catch(err){
+        console.error(err);
+    }
+});
+
+
+
+
 document.getElementById('writeForm').addEventListener('submit',async (e)=>{
     e.preventDefault();
-    const name= e.target.writeContent.value;
-    if(!name){
+    const userComment= e.target.writeContent.value;
+    if(!userComment){
         return alert('내용을 입력하세요');
     }
     try{
-        // await axios.post('/users',{name});
-        // getUser();
-        // location.reload();
+        await axios.post('/comment',{userComment});       
+        location.reload();
     }catch(err){
         console.error(err);
     }

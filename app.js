@@ -10,8 +10,9 @@ const nunjucks = require('nunjucks');
 const {sequelize}= require('./models');
 
 const indexRouter = require('./routes/index');
-// const voteRouter = require('./routes/vote');
-
+const voteRouter = require('./routes/vote');
+const commentRouter = require('./routes/comment');
+const likeRouter = require('./routes/like');
 
 
 
@@ -57,26 +58,21 @@ app.use(session({
 
 
 app.use('/',indexRouter);
-// app.use('/vote',voteRouter);
+app.use('/like',likeRouter);
+app.use('/vote',voteRouter);
+app.use('/comment',commentRouter);
 
-
-// app.use((req,res,next)=>{
-//     console.log('모든 요청에 실행되는 미들웨어');
-//     console.log(req.method+req.url);
-//     next();
-// });
-// app.get('/',(req,res,next)=>{
-//     console.log('get 실행됨');
-//     res.render('index');
-//     next();
-// });
+// 기본 url과 vote를 제외한 나머지 url에서는 에러 나오게 설정
+app.use((req,res,next)=>{
+    const error = new Error(`${req.method} ${req.url} 라우터가 없습니다`);
+    next(error);
+});
 
 app.use((err,req,res,next)=>{
     res.locals.message = err.message;
     console.log('에러메시지'+err.message);
     res.locals.error = process.env.NODE_ENV !== 'production' ? err: {};
     res.status(err.status || 500);
-    //res.render('index',{title:'hey'})하면 title:'hey' 값을 넘겨주면서 index.html파일이 렌더링됨!!
     res.render('error');
 });
 app.listen(app.get('port'),()=>{

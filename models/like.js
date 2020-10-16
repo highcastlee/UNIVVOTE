@@ -2,19 +2,18 @@
 
 const Sequelize = require('sequelize');
 
-module.exports = class Major extends Sequelize.Model{
+module.exports = class Like extends Sequelize.Model{
     static init(sequelize){
         return super.init({
-            majorId:{
+            likeId:{
                 type:Sequelize.INTEGER.UNSIGNED,
                 allowNull:false,
-                unique:true,
             },
-            majorName:{
-                type:Sequelize.STRING(20),
+            position:{
+                type:Sequelize.STRING(10),
                 allowNull:false,
             },
-            voteCount:{
+            sum:{
                 type:Sequelize.INTEGER.UNSIGNED,
                 allowNull:false,
             }
@@ -22,12 +21,14 @@ module.exports = class Major extends Sequelize.Model{
             sequelize,
             timestamps:false,
             underscored:false,
-            modelName:'Major',
-            tableName:'majorinfo',
+            modelName:'Like',
+            tableName:'likes',
             paranoid:false,
             charset:'utf8',
             collate:'utf8_general_ci',
         });
     };
-    static associate(db){};
+    static associate(db){
+        db.Like.belongsToMany(db.User, {through:'UserLike'});
+    };
 };

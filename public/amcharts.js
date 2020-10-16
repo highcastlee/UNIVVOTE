@@ -12,9 +12,9 @@ window.onload = function(){
       majorInfo = jsonObj;
       majorParsed = JSON.parse(majorInfo);
       
-      ;
+      
       am4core.ready(function() {
-        console.log('am4core 실행됨!!!!!!!!!!!!!!!!');
+        // console.log('am4core 실행됨!!!!!!!!!!!!!!!!');
         // Themes begin
         am4core.useTheme(am4themes_dark);
         am4core.useTheme(am4themes_animated);
@@ -54,9 +54,8 @@ window.onload = function(){
         });
 
         categoryAxis.sortBySeries = series;
-        console.log(majorParsed);
+        // console.log(majorParsed);
         chart.data = majorParsed;
-        
     });
   },false);
 }
