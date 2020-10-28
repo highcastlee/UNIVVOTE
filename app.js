@@ -36,7 +36,7 @@ sequelize.sync({force:false})
 
 
 app.use(morgan('dev'));
-app.use('/',express.static(path.join(__dirname,'node')));
+app.use('/',express.static(path.join(__dirname,'UNIVVOTE')));
 
 //public 폴더의 정적 파일 제공
 app.use(express.static('public'));
@@ -61,6 +61,8 @@ app.use('/',indexRouter);
 app.use('/like',likeRouter);
 app.use('/vote',voteRouter);
 app.use('/comment',commentRouter);
+
+
 
 // 기본 url과 vote를 제외한 나머지 url에서는 에러 나오게 설정
 app.use((req,res,next)=>{

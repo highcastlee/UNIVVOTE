@@ -3,7 +3,7 @@
 <head>
     <title>UNIVVOTE</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
     <link rel="shortcut icon" href="image/favicon9.ico">
     <link rel="icon" href="image/favicon9.ico">
     <link href="http://fonts.googleapis.com/css?family=Jua&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet" type="text/css">
@@ -14,8 +14,24 @@
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     
+    <meta name = "google-signin-client_id" content = "262333745223-jgtdghfksouapls6a1m47ku1advu9408.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
 </head>
 <body class='whole-wrap'>
+    <div id = 'loginModal'>
+        <div class='modal-background'></div>
+        <div class='modal-box modal-box-login'>
+            <div class='modal-header'>
+                <div class='back-btn-box'> <img class='back-btn' src='image/back.png' alt='backBtn'/></div>
+                <div><p class='modal-title'>구글 로그인</p></div>
+                <div class='modal-blank'></div>
+            </div>
+            <div class='modal-content login-banner'>
+                <div class="g-signin2 " data-onsuccess="onSignIn" data-longtitle="true"></div>
+            </div>
+        </div>
+    </div>
     <div id='urlModal'>
         <div class='modal-background'></div>
         <div class='modal-box modal-box-url'>
@@ -63,7 +79,7 @@
                         <option name='major-name' value="13">문예창작학과</option>
                         <option name='major-name' value="14">미래융합대학</option>
                         <option name='major-name' value="15">산업정보시스템전공</option>
-                        <option name='major-name' value="16">스포트과학과</option>
+                        <option name='major-name' value="16">스포츠과학과</option>
                         <option name='major-name' value="17">식품공학과</option>
                         <option name='major-name' value="18">신소재공학과</option>
                         <option name='major-name' value="19">안경광학과</option>
@@ -100,7 +116,7 @@
     <!-- page 본문 영역 -->
     <header id='header'>
         <div class='header-box'>
-            <img id='loginIcon' class='header-icon'  src='image/login2.png' alt='loginIcon'/>
+            <img id='loginBtn' class='header-icon' src='image/login2.png' alt='loginIcon'/>
             <p id='main-title'><span>UNIV</span><span>VOTE</span></p>
             <img id='sharingBtn' class='header-icon' src='image/sharing2.png' alt='sharingIcon'/>
         </div>
@@ -259,7 +275,7 @@
 중앙선거관리위원회 및 후보자들에게 허가를 받았으며
 당사자들의 요청에 의해 수정이 가능합니다.
 
-highcastle4242@naver.com</pre>
+highcastlee@naver.com</pre>
             </div>
             <div class='footer-license'>
                 <span>아이콘 제작자</span>

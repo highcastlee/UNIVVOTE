@@ -48,7 +48,11 @@ var CopyUrlToClipboard = function (){
     urlText.blur(); // 선택된 것을 다시 선택안된것으로 바꿈니다.
 };
 
-
+const loginBtn = document.getElementById("loginBtn");
+const loginModal = new Modal('loginModal');
+loginBtn.addEventListener('click',function(){
+    loginModal.openModal();
+});
 
 const voteBtn = document.getElementById("voteBtn");
 const voteModal = new Modal('voteModal');
@@ -67,8 +71,11 @@ const backBtnBox = document.getElementsByClassName('back-btn-box');
 for(let i = 0; i<backBtnBox.length;i++){
     backBtnBox[i].addEventListener('click',function(){
         if(i==0){
+            loginModal.closeModal();
+        }
+        else if(i==1){
             voteModal.closeModal();
-        }else if(i==1){
+        }else if(i==2){
             writeModal.closeModal();
         }else{
             return;
@@ -292,6 +299,17 @@ likeBtnRight_02.objBtn.addEventListener('click',function(){
 likeBtnRight_03.objBtn.addEventListener('click',function(){
     likeBtnRight_03.setClickEvent();
 });
+
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
+}
 
 
 
