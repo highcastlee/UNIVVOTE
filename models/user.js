@@ -5,10 +5,15 @@ const Sequelize = require('sequelize');
 module.exports = class User extends Sequelize.Model{
     static init(sequelize){
         return super.init({
-            email:{
-                type:Sequelize.STRING(50),
+            userId:{
+                type:Sequelize.INTEGER.UNSIGNED,
                 allowNull:false,
                 unique:true,
+            },
+            email:{
+                type:Sequelize.STRING(50),
+                // allowNull:false,
+                // unique:true,
             },
             created_at:{
                 type:Sequelize.DATE,

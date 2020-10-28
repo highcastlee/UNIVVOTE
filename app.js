@@ -14,11 +14,14 @@ const voteRouter = require('./routes/vote');
 const commentRouter = require('./routes/comment');
 const likeRouter = require('./routes/like');
 
-
+const authRouter = require('./routes/auth');
+const passport = require('passport');
 
 dotenv.config();
+const passportConfig = require('./passport');
 
 const app = express();
+passportConfig();
 app.set('port',process.env.PORT || 3007);
 app.set('view engine','html');
 
@@ -56,12 +59,14 @@ app.use(session({
     name:'session-cookie'
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/',indexRouter);
 app.use('/like',likeRouter);
 app.use('/vote',voteRouter);
 app.use('/comment',commentRouter);
-
+app.use('/auth',authRouter);
 
 
 // 기본 url과 vote를 제외한 나머지 url에서는 에러 나오게 설정

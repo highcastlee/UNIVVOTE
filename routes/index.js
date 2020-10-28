@@ -1,11 +1,16 @@
 const express = require('express');
 const fs = require('fs');
 const {User,Comment, Vote, Major, Like} = require('../models');
+const {isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const router = express.Router();
+
+router.use((req,res,next)=>{
+    res.locals.user = req.user;
+    next();
+});
 
 router.get('/',async (req,res,next)=>{
     try{
-
         // user 테이블 읽기
         const users = await User.findAll({});
         //comment 테이블 4 rows 역순으로 읽기 

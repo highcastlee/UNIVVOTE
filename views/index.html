@@ -14,8 +14,8 @@
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
     
-    <meta name = "google-signin-client_id" content = "262333745223-jgtdghfksouapls6a1m47ku1advu9408.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- <meta name = "google-signin-client_id" content = "262333745223-jgtdghfksouapls6a1m47ku1advu9408.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script> -->
 
 </head>
 <body class='whole-wrap'>
@@ -28,7 +28,13 @@
                 <div class='modal-blank'></div>
             </div>
             <div class='modal-content login-banner'>
-                <div class="g-signin2 " data-onsuccess="onSignIn" data-longtitle="true"></div>
+                <div class='kakao btn-css'>
+                    <span><a href='/auth/kakao'>카카오 로그인</a></span>
+                </div>
+                <div class='kakao btn-css'>
+                    <span><a href='/auth/logout'>로그아웃</a></span>
+                </div>
+                <!-- <div class="g-signin2 " data-onsuccess="onSignIn" data-longtitle="true"></div> -->
             </div>
         </div>
     </div>
