@@ -50,9 +50,12 @@ var CopyUrlToClipboard = function (){
 
 const loginBtn = document.getElementById("loginBtn");
 const loginModal = new Modal('loginModal');
-loginBtn.addEventListener('click',function(){
-    loginModal.openModal();
-});
+if(loginBtn!=null){
+    loginBtn.addEventListener('click',function(){
+        loginModal.openModal();
+    });
+}
+
 
 const voteBtn = document.getElementById("voteBtn");
 const voteModal = new Modal('voteModal');
@@ -130,25 +133,19 @@ calculater.prototype.calcPercent = function(){
 // });
 // JSON으로 득표 수 각각 받아서 입력
 
-let voteInfo, voteParsed, candidateLeftCount, candidateRightCount =0;
-var req = new XMLHttpRequest();
-var jsonObj;
+let voteInfo, voteParsed, candidateLeftCount, candidateRightCount = 0;
+const req = new XMLHttpRequest();
 req.responseType = 'text';
 req.open("GET","voteInfo.json",true);
 req.send(null);
 req.addEventListener("load",function(){
-    jsonObj = req.responseText;
-    // console.log(jsonObj);
-    voteInfo = jsonObj;
+    voteInfo = req.responseText;
     voteParsed = JSON.parse(voteInfo);
     candidateLeftCount = voteParsed.candidate_01;
     candidateRightCount = voteParsed.candidate_02;
     let sum = candidateLeftCount + candidateRightCount;
-    
-    let leftCount = new calculater(candidateLeftCount,sum);
-    let rightCount = new calculater(candidateRightCount,sum);
-    let leftPercent = leftCount.calcPercent();
-    let rightPercent = rightCount.calcPercent();
+    let leftPercent = new calculater(candidateLeftCount,sum).calcPercent();
+    let rightPercent = new calculater(candidateRightCount,sum).calcPercent();
     
     new numberCounter("percentLeft", leftPercent, 1.1,true);
     new numberCounter("percentRight", rightPercent, 1.1,true);
@@ -211,8 +208,13 @@ document.getElementById('voteForm').addEventListener('submit',async (e)=>{
     }
 });
 
-
-
+const unSubmit = document.getElementsByClassName('unSubmit')
+for(let i = 0;i<unSubmit.length;i++){
+    unSubmit[i].addEventListener('click',function(e){
+        alert('로그인이 필요한 서비스입니다.');
+        e.preventDefault();
+    });
+}
 
 document.getElementById('writeForm').addEventListener('submit',async (e)=>{
     e.preventDefault();
@@ -221,7 +223,7 @@ document.getElementById('writeForm').addEventListener('submit',async (e)=>{
         return alert('내용을 입력하세요');
     }
     try{
-        await axios.post('/comment',{userComment});       
+        await axios.post('/comment',{userComment});
         location.reload();
     }catch(err){
         console.error(err);
@@ -234,7 +236,7 @@ document.getElementById('writeForm').addEventListener('submit',async (e)=>{
 function Like(btnId,countId){
     this.objBtn = document.getElementById(btnId);
     this.objCount = document.getElementById(countId);
-    this.count = 0;
+    this.count;
     this.isLiked = false;
     return;
 }
@@ -247,6 +249,9 @@ Like.prototype={
         this.changeLikeBtn();
         this.changeLikeCount();
         this.changeLikeState();
+    },
+    setLikeCount : function(){
+        this.objCount.textContent=this.count;
     },
     changeLikeCount : function(){
         if(this.isLiked){
@@ -271,45 +276,95 @@ Like.prototype={
     }
 }
 
-var likeBtnLeft_01 = new Like('pledgeLikeBtnLeft-01','pledgeLikeCountLeft-01');
-var likeBtnLeft_02 = new Like('pledgeLikeBtnLeft-02','pledgeLikeCountLeft-02');
-var likeBtnLeft_03 = new Like('pledgeLikeBtnLeft-03','pledgeLikeCountLeft-03');
+let likeInfo, likeParsed;
+const likeReq = new XMLHttpRequest();
+likeReq.responseType = 'text';
+likeReq.open("GET","likeInfo.json",true);
+likeReq.send(null);
+likeReq.addEventListener("load",function(){
+    likeInfo = likeReq.responseText; 
+    likeParsed = JSON.parse(likeInfo);
+    var likeBtnLeft_01 = new Like('pledgeLikeBtnLeft-01','pledgeLikeCountLeft-01');
+    var likeBtnLeft_02 = new Like('pledgeLikeBtnLeft-02','pledgeLikeCountLeft-02');
+    var likeBtnLeft_03 = new Like('pledgeLikeBtnLeft-03','pledgeLikeCountLeft-03');
+    var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01');
+    var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
+    var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
+    likeBtnLeft_01.setCount(likeParsed[0].sum);
+    likeBtnLeft_01.setLikeCount();
+    likeBtnLeft_02.setCount(likeParsed[1].sum);
+    likeBtnLeft_02.setLikeCount();
+    likeBtnLeft_03.setCount(likeParsed[2].sum);
+    likeBtnLeft_03.setLikeCount();
+    likeBtnRight_01.setCount(likeParsed[3].sum);
+    likeBtnRight_01.setLikeCount();
+    likeBtnRight_02.setCount(likeParsed[4].sum);
+    likeBtnRight_02.setLikeCount();
+    likeBtnRight_03.setCount(likeParsed[5].sum);
+    likeBtnRight_03.setLikeCount();
 
-var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01');
-var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
-var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
+    likeBtnLeft_01.objBtn.addEventListener('click',async (e)=>{
+        likeBtnLeft_01.setClickEvent();
+        let count = likeBtnLeft_01.getCount();
+        let likeId = 1;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
+    likeBtnLeft_02.objBtn.addEventListener('click',async (e)=>{
+        likeBtnLeft_02.setClickEvent();
+        let count = likeBtnLeft_02.getCount();
+        let likeId = 2;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
+    likeBtnLeft_03.objBtn.addEventListener('click',async (e)=>{
+        likeBtnLeft_03.setClickEvent();
+        let count = likeBtnLeft_03.getCount();
+        let likeId = 3;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
+    likeBtnRight_01.objBtn.addEventListener('click',async (e)=>{
+        likeBtnRight_01.setClickEvent();
+        let count = likeBtnRight_01.getCount();
+        let likeId = 4;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
+    likeBtnRight_02.objBtn.addEventListener('click',async (e)=>{
+        likeBtnRight_02.setClickEvent();
+        let count = likeBtnRight_03.getCount();
+        let likeId = 5;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
+    likeBtnRight_03.objBtn.addEventListener('click',async (e)=>{
+        likeBtnRight_03.setClickEvent();
+        let count = likeBtnRight_03.getCount();
+        let likeId = 6;
+        try{
+            await axios.post('/like',{likeId,count});
+        }catch(err){
+            console.error(err);
+        }
+    });
 
-
-
-likeBtnLeft_01.objBtn.addEventListener('click',function(){ 
-    likeBtnLeft_01.setClickEvent();
 });
-likeBtnLeft_02.objBtn.addEventListener('click',function(){ 
-    likeBtnLeft_02.setClickEvent();
-});
-likeBtnLeft_03.objBtn.addEventListener('click',function(){
-    likeBtnLeft_03.setClickEvent();
-});
-likeBtnRight_01.objBtn.addEventListener('click',function(){
-    likeBtnRight_01.setClickEvent();
-});
-likeBtnRight_02.objBtn.addEventListener('click',function(){ 
-    likeBtnRight_02.setClickEvent();
-});
-likeBtnRight_03.objBtn.addEventListener('click',function(){
-    likeBtnRight_03.setClickEvent();
-});
-
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-}
 
 
 

@@ -29,6 +29,6 @@ module.exports = class Like extends Sequelize.Model{
         });
     };
     static associate(db){
-        db.Like.belongsToMany(db.User, {through:'UserLike'});
+        
     };
 };

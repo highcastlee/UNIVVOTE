@@ -10,10 +10,45 @@ module.exports = class User extends Sequelize.Model{
                 allowNull:false,
                 unique:true,
             },
-            email:{
-                type:Sequelize.STRING(50),
-                // allowNull:false,
-                // unique:true,
+            isVoted:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isCommented:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked1:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked2:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked3:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked4:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked5:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked6:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
             },
             created_at:{
                 type:Sequelize.DATE,
@@ -32,7 +67,6 @@ module.exports = class User extends Sequelize.Model{
         });
     }
     static associate(db){
-        db.User.hasMany(db.Comment,{foreignKey:'commenter',sourceKey:'id'});
-        db.User.belongsToMany(db.Like,{through : 'UserLike'});
+        db.User.hasMany(db.Comment,{foreignKey:'commenter',sourceKey:'userId'});
     }
 };

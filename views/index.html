@@ -1,4 +1,4 @@
-<!DOCTYPE html5>
+<!DOCTYPE html>
 <html>
 <head>
     <title>UNIVVOTE</title>
@@ -24,15 +24,12 @@
         <div class='modal-box modal-box-login'>
             <div class='modal-header'>
                 <div class='back-btn-box'> <img class='back-btn' src='image/back.png' alt='backBtn'/></div>
-                <div><p class='modal-title'>구글 로그인</p></div>
+                <div><p class='modal-title'>카카오 로그인</p></div>
                 <div class='modal-blank'></div>
             </div>
             <div class='modal-content login-banner'>
-                <div class='kakao btn-css'>
-                    <span><a href='/auth/kakao'>카카오 로그인</a></span>
-                </div>
-                <div class='kakao btn-css'>
-                    <span><a href='/auth/logout'>로그아웃</a></span>
+                <div class='kakao'>
+                    <a href='/auth/kakao'><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/></a>
                 </div>
                 <!-- <div class="g-signin2 " data-onsuccess="onSignIn" data-longtitle="true"></div> -->
             </div>
@@ -100,7 +97,12 @@
                         <option name='major-name' value="28">환경공학과</option>
                     </select>
                 </div>
+                {% if user and user.id %}
                 <input id='voteSubmit' class='btn-css modal-btn-css' type="submit" value='vote'/>
+                {% else %}
+                <input class='unSubmit btn-css modal-btn-css' type="button" value='vote'/>
+                {% endif %}
+                
             </form>
 
         </div>
@@ -115,14 +117,23 @@
             </div>
             <form id='writeForm' class='modal-form' method="POST">
                 <textarea id='writeContent' name="mb_self" rows="5" cols="30" maxlength="50" placeholder="내용을 입력하세요"></textarea>
+                {% if user and user.id %}
                 <input id='writeSubmit' class='btn-css modal-btn-css' type="submit" value='write'/>
+                {% else %}
+                <input class='unSubmit btn-css modal-btn-css' type="button" value='write'/>
+                {% endif %}
+                
             </form>
         </div>
     </div>
     <!-- page 본문 영역 -->
     <header id='header'>
         <div class='header-box'>
-            <img id='loginBtn' class='header-icon' src='image/login2.png' alt='loginIcon'/>
+            {% if user and user.id %}
+            <a href='/auth/logout'><img class='header-icon logout-btn' src='image/logout.png' alt='logout'/></a>
+            {% else %}
+            <span id='loginBtn' class='header-icon login-text'>로그인</span>
+            {% endif %}
             <p id='main-title'><span>UNIV</span><span>VOTE</span></p>
             <img id='sharingBtn' class='header-icon' src='image/sharing2.png' alt='sharingIcon'/>
         </div>
@@ -184,30 +195,10 @@
                         <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
                     </div>
                     <div class='pledge-box'>
-                        <div class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>    
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnLeft-01' class='pledge-like-btn' src='#'>
-                                <span id='pledgeLikeCountLeft-01' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
-                        <div class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnLeft-02' class='pledge-like-btn' src='#'/>
-                                <span id='pledgeLikeCountLeft-02' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
-                        <div  class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnLeft-03' class='pledge-like-btn' src='#'/>
-                                <span id='pledgeLikeCountLeft-03' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
+                        {% include "pledgeLeft1.html" %}
+                        {% include "pledgeLeft2.html" %}
+                        {% include "pledgeLeft3.html" %}
+                        
                     </div>
                 </div>
                 <div class='right-box'>
@@ -220,30 +211,9 @@
                         <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
                     </div>
                     <div class='pledge-box'>
-                        <div class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>    
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnRight-01' class='pledge-like-btn' src='#'/>
-                                <span id='pledgeLikeCountRight-01' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
-                        <div class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnRight-02' class='pledge-like-btn' src='#'/>
-                                <span id='pledgeLikeCountRight-02' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
-                        <div  class='pledge-small-box'>
-                            <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-                            <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>
-                            <div class='pledge-like-box'>
-                                <img id='pledgeLikeBtnRight-03' class='pledge-like-btn' src='#'/>
-                                <span id='pledgeLikeCountRight-03' class='pledge-like-count'>0</span>
-                            </div>
-                        </div>
+                        {% include "pledgeRight1.html" %}
+                        {% include "pledgeRight2.html" %}
+                        {% include "pledgeRight3.html" %}
                     </div>
                 </div>
             </div>
