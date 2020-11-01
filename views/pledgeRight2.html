@@ -1,9 +1,12 @@
 
 <div class='pledge-small-box'>
-    <div class='pledge-title'><p>1) 코로나 19 종식 시켜드립니다.</p></div>
-    <div class='pledge-text'><p>- 코로나 19로 인해 경제적 정신적 타격이 크다고 판단하여 당선이 된다면<br></p></div>    
+    <div class='pledge-title'><p>2) 안전한 동아리 활동 보장</p></div>
+    <div class='pledge-text'><p>- 동아리 활동 재개를 위해 방역 및 안전에 노력하겠습니다.<br></p></div>    
     <div class='pledge-like-box'>
+        {% if user %}
         <img id='pledgeLikeBtnRight-02' class='pledge-like-btn' src='#'>
-        <span id='pledgeLikeCountRight-02' class='pledge-like-count'>0</span>
+        {% else %}
+        <img class='pledge-like-btn unSubmit' src='#'>
+        {% endif %}        <span id='pledgeLikeCountRight-02' class='pledge-like-count'>0</span>
     </div>
 </div>

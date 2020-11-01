@@ -31,7 +31,6 @@
                 <div class='kakao'>
                     <a href='/auth/kakao'><img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="222"/></a>
                 </div>
-                <!-- <div class="g-signin2 " data-onsuccess="onSignIn" data-longtitle="true"></div> -->
             </div>
         </div>
     </div>
@@ -97,14 +96,14 @@
                         <option name='major-name' value="28">환경공학과</option>
                     </select>
                 </div>
-                {% if user and user.id %}
+                {% if user %}
                 <input id='voteSubmit' class='btn-css modal-btn-css' type="submit" value='vote'/>
+                {% elseif user %}
                 {% else %}
                 <input class='unSubmit btn-css modal-btn-css' type="button" value='vote'/>
                 {% endif %}
                 
             </form>
-
         </div>
     </div>
     <div id='writeModal'>
@@ -117,8 +116,10 @@
             </div>
             <form id='writeForm' class='modal-form' method="POST">
                 <textarea id='writeContent' name="mb_self" rows="5" cols="30" maxlength="50" placeholder="내용을 입력하세요"></textarea>
-                {% if user and user.id %}
+                {% if user  %}
                 <input id='writeSubmit' class='btn-css modal-btn-css' type="submit" value='write'/>
+                {% elseif user %}
+                <input class='alreadySubmit btn-css modal-btn-css' type="button" value='write'/>
                 {% else %}
                 <input class='unSubmit btn-css modal-btn-css' type="button" value='write'/>
                 {% endif %}
@@ -129,7 +130,7 @@
     <!-- page 본문 영역 -->
     <header id='header'>
         <div class='header-box'>
-            {% if user and user.id %}
+            {% if user %}
             <a href='/auth/logout'><img class='header-icon logout-btn' src='image/logout.png' alt='logout'/></a>
             {% else %}
             <span id='loginBtn' class='header-icon login-text'>로그인</span>
@@ -216,6 +217,9 @@
                         {% include "pledgeRight3.html" %}
                     </div>
                 </div>
+            </div>
+            <div class='crud-btn-box'>
+                <a href='/pledge'><button id='pledgeBtn' class='btn-css'>단과대 선거 공약 모음</button></a>
             </div>
         </div>
     </section>

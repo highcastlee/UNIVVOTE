@@ -3,7 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const session = require('cookie-session');
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
 // ./models는 ./models/index.js와 같은 의미
@@ -21,7 +21,6 @@ dotenv.config();
 const passportConfig = require('./passport');
 
 const app = express();
-passportConfig();
 app.set('port',process.env.PORT || 3007);
 app.set('view engine','html');
 
@@ -50,17 +49,18 @@ app.use(favicon(path.join(__dirname, 'public','image', 'favicon9.ico')));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave:false,
-    saveUninitialized:false,
+    saveUninitialized:true,
     secret:process.env.COOKIE_SECRET,
     cookie:{
         httpOnly:true,
-        secure:false
+        secure:false,
+        maxAge: 60 * 60 * 1000,
     },
-    name:'session-cookie'
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+passportConfig();
 
 app.use('/',indexRouter);
 app.use('/like',likeRouter);

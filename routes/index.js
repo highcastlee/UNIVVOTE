@@ -6,7 +6,11 @@ const router = express.Router();
 
 router.use((req,res,next)=>{
     //nunjucks 사용을 위한 res.locals
-    res.locals.user = req.user;
+    // res.locals.user = req.user;
+
+    // res.locals.user = req.session.user;
+    res.session = req.session.user;
+    console.log('=====res.session : '+res.session);
     next();
 });
 
@@ -15,8 +19,10 @@ router.get('/',async (req,res,next)=>{
         const comments = await Comment.findAll({
             order:[['created_at','DESC']],
             limit:4,
-        });         
-        res.render('index',{ comments});
+        });
+        const user = req.session.user;
+        console.log('comments : '+comments);
+        res.render('index',{user, comments});
     }catch(err){
         console.error(err);
         next(err);

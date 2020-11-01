@@ -1,18 +1,22 @@
 const express = require('express');
 const passport = require('passport');
-const fs = require('fs');
 const {isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const {User, Comment} = require('../models');
 
 const router = express.Router();
 
-router.post('/', async (req,res,next)=>{
+router.post('/',isLoggedIn, async (req,res,next)=>{
     
     try{
         //꼭 현재 로그인 중인 user id를 가져와야함...!!세션 or 쿠키 사용해야할 듯
-        const user = await User.findOne({});
-        console.log(user);
+        // console.log('req.user내용 : '+req.user.userId);
+        const user = await User.findOne({
+            where:{userId:req.user.userId}
+        });
 
+        user.isCommented = 1;
+        await user.save();
+        
         const userComment = req.body.userComment;
         Comment.create({
             comment: userComment,

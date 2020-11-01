@@ -456,34 +456,7 @@ input[type="checkbox"]:checked + label span {
     text-decoration: underline;
     color:white;
 }
-/* #voteBtn {
-    background-color:#5259df;
-    color: white;
-    padding: 1rem 1.2rem;
-    border: none;
-    border-radius: 1.5rem;
-    letter-spacing: 2px;
-    outline: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Jua', sans-serif;
-    font-size: 1.7rem;
-    box-shadow: 0 0 15px powderblue;
-}
-  
-#voteBtn:hover {
-  animation: random-bg .5s linear infinite, grow 1300ms ease infinite;
-}
 
-@keyframes random-bg {
-  from {
-    filter: hue-rotate(0);
-  }
-  to {
-    filter: hue-rotate(360deg);
-  }
-}
-/* pulsating effect on button */
 @keyframes grow {
   0% {
     transform: scale(1);
@@ -515,18 +488,7 @@ input[type="checkbox"]:checked + label span {
     margin: 5rem auto 0;
     text-align: center;
 }
-/* .reload-box{
-    text-align: right;
-}
-#reloadIcon{
-    width: 2rem;
-    height: 2rem;
-    opacity: 0.4;
-}
-#reloadIcon:hover{
-    opacity: 1;
-    cursor: pointer;
-} */
+
 
 #chartdiv {
     width: 100%;
@@ -581,10 +543,14 @@ input[type="checkbox"]:checked + label span {
     padding: 0 0.5rem;
 }
 .pledge-small-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-radius: 1rem;
     text-align: left;
     margin-bottom: 1rem;
     padding: 1rem;
+    height: 12rem;
     background: linear-gradient(160deg, rgb(25 31 44), rgb(55 68 97) 90%);
 }
 
@@ -619,6 +585,7 @@ input[type="checkbox"]:checked + label span {
     color: hsl(0deg 0% 100%);
     font-family: 'jua', sans-serif;
 }
+
 
 .crud-box{
     display: flex;

@@ -215,6 +215,13 @@ for(let i = 0;i<unSubmit.length;i++){
         e.preventDefault();
     });
 }
+const alreadySubmit = document.getElementsByClassName('alreadySubmit')
+for(let i = 0;i<alreadySubmit.length;i++){
+    alreadySubmit[i].addEventListener('click',function(e){
+        alert('이미 참여하셨습니다.');
+        e.preventDefault();
+    });
+}
 
 document.getElementById('writeForm').addEventListener('submit',async (e)=>{
     e.preventDefault();
@@ -237,41 +244,41 @@ function Like(btnId,countId){
     this.objBtn = document.getElementById(btnId);
     this.objCount = document.getElementById(countId);
     this.count;
-    this.isLiked = false;
+    this.state = false;
     return;
 }
 
 Like.prototype={
     getCount : function(){return this.count;},
     setCount : function(x){this.count = x;},
-    getIsLiked : function(){return this.isLiked;},
+    getIsLiked : function(){return this.state;},
     setClickEvent : function(){
         this.changeLikeBtn();
         this.changeLikeCount();
         this.changeLikeState();
     },
-    setLikeCount : function(){
+    displayCount : function(){
         this.objCount.textContent=this.count;
     },
     changeLikeCount : function(){
-        if(this.isLiked){
+        if(this.state){
             this.objCount.textContent=--this.count;
         }else{
             this.objCount.textContent=++this.count;
         }
     },
     changeLikeBtn : function(){
-        if(this.isLiked){
+        if(this.state){
             this.objBtn.style.backgroundImage = 'url(image/heartBlue.png)';
         }else{
             this.objBtn.style.backgroundImage = 'url(image/heartRed.png)';
         }
     },
     changeLikeState : function(){
-        if(this.isLiked){
-            this.isLiked=false;
+        if(this.state){
+            this.state=false;
         }else{
-            this.isLiked=true;
+            this.state=true;
         }
     }
 }
@@ -291,24 +298,26 @@ likeReq.addEventListener("load",function(){
     var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
     var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
     likeBtnLeft_01.setCount(likeParsed[0].sum);
-    likeBtnLeft_01.setLikeCount();
+    likeBtnLeft_01.displayCount();
     likeBtnLeft_02.setCount(likeParsed[1].sum);
-    likeBtnLeft_02.setLikeCount();
+    likeBtnLeft_02.displayCount();
     likeBtnLeft_03.setCount(likeParsed[2].sum);
-    likeBtnLeft_03.setLikeCount();
+    likeBtnLeft_03.displayCount();
     likeBtnRight_01.setCount(likeParsed[3].sum);
-    likeBtnRight_01.setLikeCount();
+    likeBtnRight_01.displayCount();
     likeBtnRight_02.setCount(likeParsed[4].sum);
-    likeBtnRight_02.setLikeCount();
+    likeBtnRight_02.displayCount();
     likeBtnRight_03.setCount(likeParsed[5].sum);
-    likeBtnRight_03.setLikeCount();
+    likeBtnRight_03.displayCount();
 
     likeBtnLeft_01.objBtn.addEventListener('click',async (e)=>{
         likeBtnLeft_01.setClickEvent();
         let count = likeBtnLeft_01.getCount();
         let likeId = 1;
+        let state = likeBtnLeft_01.state;
+        console.log(state);
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
