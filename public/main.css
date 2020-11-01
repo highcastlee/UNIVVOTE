@@ -22,7 +22,7 @@ body{
         width: 100%;
     }
     .vote-content{
-        top:50%;
+        top:45%;
     }
     .section{
         width:100%;
@@ -43,7 +43,7 @@ body{
         width: 35rem;
     }
     .vote-content{
-        top:50%;
+        top:45%;
     }
     .section{
         width:100%;
@@ -309,9 +309,19 @@ input[type="checkbox"]:checked + label span {
     height: 3rem;
     box-sizing: border-box;
 }
-
+.header-pledge{
+    text-align: center;
+    margin-top: 0rem;
+    font-size: 1.9rem;
+    font-family: 'Jua', sans-serif;
+    animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+    -webkit-animation: fadein 2s; 
+     -o-animation: fadein 2s; 
+     
+}
 .login-text{
-    width: 4.5rem;
+    width: 5rem;
     height: 2.6rem;
     text-align: center;
     box-sizing: border-box;
@@ -621,24 +631,7 @@ input[type="checkbox"]:checked + label span {
     word-break:break-all; 
 }
 
-/*.delete-btn-box{
-    display: inline-block;
-}
-.delete-btn{
-    width: 2rem;
-    height: 2rem;
-    border-style: none;
-    color:rgb(175, 175, 175);
-    background: none;
-    font-size: 1rem;
-}
-.delete-btn:hover{
-    cursor: pointer;
-    color:white;
-}
-.delete-btn:focus{
-    outline: none;
-} */
+
 
 .crud-btn-box{
     margin-top: 2rem;
@@ -729,4 +722,54 @@ input[type="checkbox"]:checked + label span {
     100%{
         opacity:0;
     }
+}
+
+.anchor-css{
+    text-decoration: none;
+    color:white;
+}
+.slide-wrap{
+    
+}
+.slide-btn-box button{
+    position: absolute;
+    top: 2.5%;
+    width: 5rem;
+    height: 3rem;
+    background: none;
+    color:white;
+    border:none;
+    z-index: 99;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
+}
+button:hover{
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+#slideBtnPrev{
+    left:15%;
+}
+#slideBtnNext{
+    right:15%;
+}
+.slide-box{
+    position: relative;
+    width: 35rem;
+    height: 70rem;
+    overflow: hidden;
+}
+#slide-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 175rem;
+}
+.slide-section{
+    width: 35rem;
+    margin: 0;
 }

@@ -13,7 +13,7 @@ const indexRouter = require('./routes/index');
 const voteRouter = require('./routes/vote');
 const commentRouter = require('./routes/comment');
 const likeRouter = require('./routes/like');
-
+const pledgeRouter = require('./routes/pledge');
 const authRouter = require('./routes/auth');
 const passport = require('passport');
 
@@ -67,6 +67,7 @@ app.use('/like',likeRouter);
 app.use('/vote',voteRouter);
 app.use('/comment',commentRouter);
 app.use('/auth',authRouter);
+app.use('/pledge',pledgeRouter);
 
 
 // 기본 url과 vote를 제외한 나머지 url에서는 에러 나오게 설정
