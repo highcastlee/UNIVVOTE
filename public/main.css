@@ -149,12 +149,8 @@ body{
 .login-banner{
     padding-top: 2.5rem;
 }
-.g-signin2 .abcRioButton{
-    margin:2rem auto 0;
-}
-.abcRioButtonContentWrapper{
-    border-radius: 10%;
-}
+
+
 /* URL 버튼 모달 영역 */
 #urlModal{
     display:none;
@@ -575,18 +571,27 @@ input[type="checkbox"]:checked + label span {
 }
 .pledge-like-box{
     display: inline;
+    width: 5rem;
 }
-.pledge-like-btn{
+.pledge-like-btn-blue{
     width:1rem;
     height: 1rem;
     vertical-align: unset;
     background-image: url(image/heartBlue.png);
     background-size: 1rem 1rem;
 }
-.pledge-like-btn:hover{
+.pledge-like-btn-blue:hover{
     cursor: pointer;
+}
+.pledge-like-btn-red{
+    width:1rem;
+    height: 1rem;
+    vertical-align: unset;
     background-image: url(image/heartRed.png);
     background-size: 1rem 1rem;
+}
+.pledge-like-btn-red:hover{
+    cursor: pointer;
 }
 .pledge-like-count{
     vertical-align: bottom;
@@ -728,9 +733,6 @@ input[type="checkbox"]:checked + label span {
     text-decoration: none;
     color:white;
 }
-.slide-wrap{
-    
-}
 .slide-btn-box button{
     position: absolute;
     top: 2.5%;
@@ -738,7 +740,8 @@ input[type="checkbox"]:checked + label span {
     height: 3rem;
     background: none;
     color:white;
-    border:none;
+    border: 1px solid gray;
+    border-radius: 10rem;
     z-index: 99;
     animation: fadein 2s;
     -moz-animation: fadein 2s; 
@@ -761,6 +764,7 @@ button:focus{
     position: relative;
     width: 35rem;
     height: 70rem;
+    margin: 0 auto;
     overflow: hidden;
 }
 #slide-list{

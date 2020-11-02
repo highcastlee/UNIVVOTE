@@ -8,10 +8,10 @@
         </div>
         <form id='writeForm' class='modal-form' method="POST">
             <textarea id='writeContent' name="mb_self" rows="5" cols="30" maxlength="50" placeholder="내용을 입력하세요"></textarea>
-            {% if user  %}
-            <input id='writeSubmit' class='btn-css modal-btn-css' type="submit" value='write'/>
-            {% elseif user %}
+            {% if user and condition.isCommented %}
             <input class='alreadySubmit btn-css modal-btn-css' type="button" value='write'/>
+            {% elseif user %}
+            <input id='writeSubmit' class='btn-css modal-btn-css' type="submit" value='write'/>
             {% else %}
             <input class='unSubmit btn-css modal-btn-css' type="button" value='write'/>
             {% endif %}

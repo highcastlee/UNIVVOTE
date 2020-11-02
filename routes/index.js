@@ -20,9 +20,19 @@ router.get('/',async (req,res,next)=>{
             order:[['created_at','DESC']],
             limit:4,
         });
-        const user = req.session.user;
-        console.log('comments : '+comments);
-        res.render('index',{user, comments});
+        let user = 0;
+        if(req.session.user){
+            user = req.session.user;
+        }else{
+            user = {userId:null};
+        }
+    
+        const condition = await User.findOne({
+            where:{userId:user.userId}
+        });
+        console.log('condition : '+condition);
+        console.log('user : '+user);
+        res.render('index',{user, comments, condition});
     }catch(err){
         console.error(err);
         next(err);

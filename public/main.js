@@ -122,16 +122,6 @@ calculater.prototype.calcPercent = function(){
     return this.count/this.sum*100;
 };
 
-// const leftCount = new calculater(candidateLeftCount,sum);
-// const rightCount = new calculater(candidateRightCount,sum);
-// leftPercent = leftCount.calcPercent();
-// rightPercent = rightCount.calcPercent();
-// // console.log(leftPercent);
-
-// window.addEventListener('load',function(){
-
-// });
-// JSON으로 득표 수 각각 받아서 입력
 
 let voteInfo, voteParsed, candidateLeftCount, candidateRightCount = 0;
 const req = new XMLHttpRequest();
@@ -297,6 +287,24 @@ likeReq.addEventListener("load",function(){
     var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01');
     var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
     var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
+    if(likeBtnLeft_01.objBtn.className=='pledge-like-btn-red'){
+        likeBtnLeft_01.changeLikeState();
+    }
+    if(likeBtnLeft_02.objBtn.className=='pledge-like-btn-red'){
+        likeBtnLeft_02.changeLikeState();
+    }
+    if(likeBtnLeft_03.objBtn.className=='pledge-like-btn-red'){
+        likeBtnLeft_03.changeLikeState();
+    }
+    if(likeBtnRight_01.objBtn.className=='pledge-like-btn-red'){
+        likeBtnRight_01.changeLikeState();
+    }
+    if(likeBtnRight_02.objBtn.className=='pledge-like-btn-red'){
+        likeBtnRight_02.changeLikeState();
+    }
+    if(likeBtnRight_03.objBtn.className=='pledge-like-btn-red'){
+        likeBtnRight_03.changeLikeState();
+    }
     likeBtnLeft_01.setCount(likeParsed[0].sum);
     likeBtnLeft_01.displayCount();
     likeBtnLeft_02.setCount(likeParsed[1].sum);
@@ -309,13 +317,15 @@ likeReq.addEventListener("load",function(){
     likeBtnRight_02.displayCount();
     likeBtnRight_03.setCount(likeParsed[5].sum);
     likeBtnRight_03.displayCount();
-
+    
+    let count = 0;
+    let likeId = 0;
+    let state = 0;
     likeBtnLeft_01.objBtn.addEventListener('click',async (e)=>{
         likeBtnLeft_01.setClickEvent();
-        let count = likeBtnLeft_01.getCount();
-        let likeId = 1;
-        let state = likeBtnLeft_01.state;
-        console.log(state);
+        count = likeBtnLeft_01.getCount();
+        likeId = 1;
+        state = likeBtnLeft_01.state;
         try{
             await axios.post('/like',{likeId,count,state});
         }catch(err){
@@ -324,50 +334,55 @@ likeReq.addEventListener("load",function(){
     });
     likeBtnLeft_02.objBtn.addEventListener('click',async (e)=>{
         likeBtnLeft_02.setClickEvent();
-        let count = likeBtnLeft_02.getCount();
-        let likeId = 2;
+        count = likeBtnLeft_02.getCount();
+        likeId = 2;
+        state = likeBtnLeft_02.state;
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
     });
     likeBtnLeft_03.objBtn.addEventListener('click',async (e)=>{
         likeBtnLeft_03.setClickEvent();
-        let count = likeBtnLeft_03.getCount();
-        let likeId = 3;
+        count = likeBtnLeft_03.getCount();
+        likeId = 3;
+        state = likeBtnLeft_03.state;
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
     });
     likeBtnRight_01.objBtn.addEventListener('click',async (e)=>{
         likeBtnRight_01.setClickEvent();
-        let count = likeBtnRight_01.getCount();
-        let likeId = 4;
+        count = likeBtnRight_01.getCount();
+        likeId = 4;
+        state = likeBtnRight_01.state;
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
     });
     likeBtnRight_02.objBtn.addEventListener('click',async (e)=>{
         likeBtnRight_02.setClickEvent();
-        let count = likeBtnRight_03.getCount();
-        let likeId = 5;
+        count = likeBtnRight_02.getCount();
+        likeId = 5;
+        state = likeBtnRight_02.state;
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
     });
     likeBtnRight_03.objBtn.addEventListener('click',async (e)=>{
         likeBtnRight_03.setClickEvent();
-        let count = likeBtnRight_03.getCount();
-        let likeId = 6;
+        count = likeBtnRight_03.getCount();
+        likeId = 6;
+        state = likeBtnRight_03.state;
         try{
-            await axios.post('/like',{likeId,count});
+            await axios.post('/like',{likeId,count,state});
         }catch(err){
             console.error(err);
         }
