@@ -1,0 +1,63 @@
+<div id='voteModal'>
+    <div class='modal-background'></div>
+    <div class='modal-box modal-box-vote'>
+        <div class='modal-header'>
+            <div class='back-btn-box'> <img class='back-btn' src='image/back.png' alt='backBtn'/></div>
+        </div>
+        <div class='modal-title'>
+            <p >"11월 17일, 소중한 한 표를 약속합니다"</p>
+        </div>
+        <form id='voteForm' class='modal-form' method="POST">
+            <div class='modal-candidate' >
+                <div id='modal-candidate-left'>
+                    <img class='candidate-small' src='image/candidate1.png' alt='candidate1'/>
+                    <div><input id='inputLeft' type="checkbox" name="candidateNumber" value="candidate-01" ><label><span ></span>기호 1번</label></div>
+                </div>
+                <div id='modal-candidate-right'>
+                    <img class='candidate-small' src='image/candidate2.png' alt='candidate2'/>
+                    <div><input id='inputRight' type="checkbox" name="candidateNumber" value="candidate-02" ><label><span ></span>기호 2번</label></div>
+                </div>
+            </div>
+            <div class='custom-select'>
+                <select id='userMajor' name="usermajor" required>
+                    <option value="" >본인의 전공을 선택하세요</option>
+                    <option name='major-name' value="1">GTM</option>
+                    <option name='major-name' value="2">ITM</option>
+                    <option name='major-name' value="3">MSDE</option>
+                    <option name='major-name' value="4">건설시스템공학과</option>
+                    <option name='major-name' value="5">건축학부(건축공학전공)</option>
+                    <option name='major-name' value="6">건축학부(건축학전공)</option>
+                    <option name='major-name' value="7">경영학과</option>
+                    <option name='major-name' value="8">금속공예학과</option>
+                    <option name='major-name' value="9">기계시스템디자인공학과</option>
+                    <option name='major-name' value="10">기계자동자공학과</option>
+                    <option name='major-name' value="11">도예학과</option>
+                    <option name='major-name' value="12">디자인학과</option>
+                    <option name='major-name' value="13">문예창작학과</option>
+                    <option name='major-name' value="14">미래융합대학</option>
+                    <option name='major-name' value="15">산업정보시스템전공</option>
+                    <option name='major-name' value="16">스포츠과학과</option>
+                    <option name='major-name' value="17">식품공학과</option>
+                    <option name='major-name' value="18">신소재공학과</option>
+                    <option name='major-name' value="19">안경광학과</option>
+                    <option name='major-name' value="20">영어영문학과</option>
+                    <option name='major-name' value="21">전기정보공학과</option>
+                    <option name='major-name' value="22">전자IT미디어공학과</option>
+                    <option name='major-name' value="23">정밀화학과</option>
+                    <option name='major-name' value="24">조형예술학과</option>
+                    <option name='major-name' value="25">컴퓨터공학과</option>
+                    <option name='major-name' value="26">행정학과</option>
+                    <option name='major-name' value="27">화공생명공학과</option>
+                    <option name='major-name' value="28">환경공학과</option>
+                </select>
+            </div>
+            {% if user and condition.isVoted %}
+            <input class='alreadySubmit btn-css modal-btn-css' type="button" value='vote'/>
+            {% elseif user %}
+            <input id='voteSubmit' class='btn-css modal-btn-css' type="submit" value='vote'/>
+            {% else %}
+            <input class='unSubmit btn-css modal-btn-css' type="button" value='vote'/>
+            {% endif %}
+        </form>
+    </div>
+</div>

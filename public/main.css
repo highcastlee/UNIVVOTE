@@ -22,7 +22,7 @@ body{
         width: 100%;
     }
     .vote-content{
-        top:50%;
+        top:45%;
     }
     .section{
         width:100%;
@@ -43,7 +43,7 @@ body{
         width: 35rem;
     }
     .vote-content{
-        top:50%;
+        top:45%;
     }
     .section{
         width:100%;
@@ -101,6 +101,7 @@ body{
 }
 
 .modal-content{
+    width: 100%;
     margin-top: -0.9rem;
     text-align: center;
 }
@@ -134,6 +135,19 @@ body{
 }
 .back-btn:hover{
     opacity: 1;
+}
+/* 로그인 모달 영역 */
+#loginModal{
+    display: none;
+}
+.modal-box-login{
+    top: 50%;
+    max-height: 80%;
+    height: 20rem;
+    width: 30rem;
+}
+.login-banner{
+    padding-top: 2.5rem;
 }
 
 
@@ -277,13 +291,13 @@ input[type="checkbox"]:checked + label span {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-
     height: 5rem;
     margin : 2rem auto 0.5rem;
     animation: fadein 2s;
     -moz-animation: fadein 2s; 
     -webkit-animation: fadein 2s;
-    -o-animation: fadein 2s; 
+    -o-animation: fadein 2s;
+    padding-top: 1rem;
 }
 
 .header-icon{
@@ -291,22 +305,34 @@ input[type="checkbox"]:checked + label span {
     height: 3rem;
     box-sizing: border-box;
 }
-.header-icon:hover{
-    animation : hover 2s;
+.header-pledge{
+    text-align: center;
+    margin-top: 0rem;
+    font-size: 1.9rem;
+    font-family: 'Jua', sans-serif;
+    animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+    -webkit-animation: fadein 2s; 
+     -o-animation: fadein 2s; 
+     
 }
-@keyframes hover{
-    0%{
-        border:1px solid white;
-    }
-    99%{
-        border:1px solid white;
-    }
-    100%{
-        border:none;
-    }
+.login-text{
+    width: 5rem;
+    height: 2.6rem;
+    text-align: center;
+    box-sizing: border-box;
+    margin-top: 0.2em;
+    padding-top: 0.4rem;
+    font-size: 1.5rem;
+    font-family: 'Jua', sans-serif;
+}
+.logout-btn{
+    width:2.5rem;
+    height: 2.5rem;
 }
 
-#loginIcon:hover{
+
+#loginBtn:hover{
     cursor: pointer;
     
 }
@@ -315,8 +341,8 @@ input[type="checkbox"]:checked + label span {
 }
 
 #main-title{
-    margin-top: 0.2em;
-    font-size: 2rem;
+    margin-top: 0rem;
+    font-size: 2.5rem;
     font-family: 'Jua', sans-serif;
     font-weight: bold;
 }
@@ -436,34 +462,7 @@ input[type="checkbox"]:checked + label span {
     text-decoration: underline;
     color:white;
 }
-/* #voteBtn {
-    background-color:#5259df;
-    color: white;
-    padding: 1rem 1.2rem;
-    border: none;
-    border-radius: 1.5rem;
-    letter-spacing: 2px;
-    outline: none;
-    cursor: pointer;
-    font-weight: bold;
-    font-family: 'Jua', sans-serif;
-    font-size: 1.7rem;
-    box-shadow: 0 0 15px powderblue;
-}
-  
-#voteBtn:hover {
-  animation: random-bg .5s linear infinite, grow 1300ms ease infinite;
-}
 
-@keyframes random-bg {
-  from {
-    filter: hue-rotate(0);
-  }
-  to {
-    filter: hue-rotate(360deg);
-  }
-}
-/* pulsating effect on button */
 @keyframes grow {
   0% {
     transform: scale(1);
@@ -495,18 +494,7 @@ input[type="checkbox"]:checked + label span {
     margin: 5rem auto 0;
     text-align: center;
 }
-/* .reload-box{
-    text-align: right;
-}
-#reloadIcon{
-    width: 2rem;
-    height: 2rem;
-    opacity: 0.4;
-}
-#reloadIcon:hover{
-    opacity: 1;
-    cursor: pointer;
-} */
+
 
 #chartdiv {
     width: 100%;
@@ -561,10 +549,14 @@ input[type="checkbox"]:checked + label span {
     padding: 0 0.5rem;
 }
 .pledge-small-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border-radius: 1rem;
     text-align: left;
     margin-bottom: 1rem;
     padding: 1rem;
+    height: 12rem;
     background: linear-gradient(160deg, rgb(25 31 44), rgb(55 68 97) 90%);
 }
 
@@ -579,18 +571,27 @@ input[type="checkbox"]:checked + label span {
 }
 .pledge-like-box{
     display: inline;
+    width: 5rem;
 }
-.pledge-like-btn{
+.pledge-like-btn-blue{
     width:1rem;
     height: 1rem;
     vertical-align: unset;
     background-image: url(image/heartBlue.png);
     background-size: 1rem 1rem;
 }
-.pledge-like-btn:hover{
+.pledge-like-btn-blue:hover{
     cursor: pointer;
+}
+.pledge-like-btn-red{
+    width:1rem;
+    height: 1rem;
+    vertical-align: unset;
     background-image: url(image/heartRed.png);
     background-size: 1rem 1rem;
+}
+.pledge-like-btn-red:hover{
+    cursor: pointer;
 }
 .pledge-like-count{
     vertical-align: bottom;
@@ -599,6 +600,7 @@ input[type="checkbox"]:checked + label span {
     color: hsl(0deg 0% 100%);
     font-family: 'jua', sans-serif;
 }
+
 
 .crud-box{
     display: flex;
@@ -634,24 +636,7 @@ input[type="checkbox"]:checked + label span {
     word-break:break-all; 
 }
 
-/*.delete-btn-box{
-    display: inline-block;
-}
-.delete-btn{
-    width: 2rem;
-    height: 2rem;
-    border-style: none;
-    color:rgb(175, 175, 175);
-    background: none;
-    font-size: 1rem;
-}
-.delete-btn:hover{
-    cursor: pointer;
-    color:white;
-}
-.delete-btn:focus{
-    outline: none;
-} */
+
 
 .crud-btn-box{
     margin-top: 2rem;
@@ -742,4 +727,53 @@ input[type="checkbox"]:checked + label span {
     100%{
         opacity:0;
     }
+}
+
+.anchor-css{
+    text-decoration: none;
+    color:white;
+}
+.slide-btn-box button{
+    position: absolute;
+    top: 2.5%;
+    width: 5rem;
+    height: 3rem;
+    background: none;
+    color:white;
+    border: 1px solid gray;
+    border-radius: 10rem;
+    z-index: 99;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
+}
+button:hover{
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+#slideBtnPrev{
+    left:15%;
+}
+#slideBtnNext{
+    right:15%;
+}
+.slide-box{
+    position: relative;
+    width: 35rem;
+    height: 70rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+#slide-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    width: 175rem;
+}
+.slide-section{
+    width: 35rem;
+    margin: 0;
 }

@@ -1,0 +1,15 @@
+
+<div class='pledge-small-box'>
+    <div class='pledge-title'><p>3) 안전한 교내 컨텐츠 운영</p></div>
+    <div class='pledge-text'><p>- 현 상황에서도 교내에서 안전하게 즐길 수 있는 컨텐츠를 운영하겠습니다.<br></p></div>    
+    <div class='pledge-like-box'>
+        {% if user and condition.isLiked3 %}
+        <img id='pledgeLikeBtnLeft-03' class='pledge-like-btn-red' src='#'>
+        {% elseif user %}
+        <img id='pledgeLikeBtnLeft-03' class='pledge-like-btn-blue' src='#'>
+        {% else %}
+        <img class='pledge-like-btn-blue unSubmit' src='#'>
+        {% endif %}
+        <span id='pledgeLikeCountLeft-03' class='pledge-like-count'>0</span>
+    </div>
+</div>

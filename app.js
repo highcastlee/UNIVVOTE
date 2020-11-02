@@ -3,7 +3,7 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('express-session');
+const session = require('cookie-session');
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
 // ./models는 ./models/index.js와 같은 의미
@@ -13,10 +13,12 @@ const indexRouter = require('./routes/index');
 const voteRouter = require('./routes/vote');
 const commentRouter = require('./routes/comment');
 const likeRouter = require('./routes/like');
-
-
+const pledgeRouter = require('./routes/pledge');
+const authRouter = require('./routes/auth');
+const passport = require('passport');
 
 dotenv.config();
+const passportConfig = require('./passport');
 
 const app = express();
 app.set('port',process.env.PORT || 3007);
@@ -36,7 +38,7 @@ sequelize.sync({force:false})
 
 
 app.use(morgan('dev'));
-app.use('/',express.static(path.join(__dirname,'node')));
+app.use('/',express.static(path.join(__dirname,'UNIVVOTE')));
 
 //public 폴더의 정적 파일 제공
 app.use(express.static('public'));
@@ -47,20 +49,26 @@ app.use(favicon(path.join(__dirname, 'public','image', 'favicon9.ico')));
 app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave:false,
-    saveUninitialized:false,
+    saveUninitialized:true,
     secret:process.env.COOKIE_SECRET,
     cookie:{
         httpOnly:true,
-        secure:false
+        secure:false,
+        maxAge: 60 * 60 * 1000,
     },
-    name:'session-cookie'
 }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+passportConfig();
 
 app.use('/',indexRouter);
 app.use('/like',likeRouter);
 app.use('/vote',voteRouter);
 app.use('/comment',commentRouter);
+app.use('/auth',authRouter);
+app.use('/pledge',pledgeRouter);
+
 
 // 기본 url과 vote를 제외한 나머지 url에서는 에러 나오게 설정
 app.use((req,res,next)=>{

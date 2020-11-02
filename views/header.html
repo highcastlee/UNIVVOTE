@@ -1,0 +1,11 @@
+<header id='header'>
+    <div class='header-box'>
+        {% if user.userId %}
+        <a href='/auth/logout'><img class='header-icon logout-btn' src='image/logout.png' alt='logout'/></a>
+        {% else %}
+        <span id='loginBtn' class='header-icon login-text'>로그인</span>
+        {% endif %}
+        <p id='main-title'><span>UNIV</span><span>VOTE</span></p>
+        <img id='sharingBtn' class='header-icon' src='image/sharing2.png' alt='sharingIcon'/>
+    </div>
+</header>
