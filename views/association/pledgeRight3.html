@@ -4,11 +4,12 @@
     <div class='pledge-text'><p>- 현 상황에서도 교내에서 안전하게 즐길 수 있는 컨텐츠를 운영하겠습니다.<br></p></div>      
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked6 %}
-        <img id='pledgeLikeBtnRight-03' class='pledge-like-btn-red' src='#'>
+        <img id='associationLikeBtnRight-03' class='pledge-like-btn-red' src='#'>
         {% elseif user.userId %}
-        <img id='pledgeLikeBtnRight-03' class='pledge-like-btn-blue' src='#'>
+        <img id='associationLikeBtnRight-03' class='pledge-like-btn-blue' src='#'>
         {% else %}
-        <img id='pledgeLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='#'>
-        {% endif %}        <span id='pledgeLikeCountRight-03' class='pledge-like-count'>0</span>
+        <img id='associationLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='#'>
+        {% endif %}        
+        <span id='associationLikeCountRight-03' class='pledge-like-count'>0</span>
     </div>
 </div>

@@ -4,12 +4,12 @@
     <div class='pledge-text'><p>- 코로나 19로 인해 폐쇄했던 체육관과 운동장을 전면 개방하겠습니다.<br></p></div>    
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked1 %}
-        <img id='pledgeLikeBtnLeft-01' class='pledge-like-btn-red' src='#'>
+        <img id='associationLikeBtnLeft-01' class='pledge-like-btn-red' src='#'>
         {% elseif user.userId %}
-        <img id='pledgeLikeBtnLeft-01' class='pledge-like-btn-blue' src='#'>
+        <img id='associationLikeBtnLeft-01' class='pledge-like-btn-blue' src='#'>
         {% else %}
-        <img id='pledgeLikeBtnLeft-01' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='associationLikeBtnLeft-01' class='pledge-like-btn-blue unSubmit' src='#'>
         {% endif %}
-        <span id='pledgeLikeCountLeft-01' class='pledge-like-count'>0</span>
+        <span id='associationLikeCountLeft-01' class='pledge-like-count'>0</span>
     </div>
 </div>
