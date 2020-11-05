@@ -5,17 +5,20 @@
             <div class='back-btn-box'> <img class='back-btn' src='image/back.png' alt='backBtn'/></div>
         </div>
         <div class='modal-title'>
-            <p >"11월 17일, 소중한 한 표를 약속합니다"</p>
+            <p >"11월 24-26일, 소중한 한 표를 약속합니다"</p>
         </div>
         <form id='voteForm' class='modal-form' method="POST">
             <div class='modal-candidate' >
                 <div id='modal-candidate-left'>
                     <img class='candidate-small' src='image/candidate1.png' alt='candidate1'/>
-                    <div><input id='inputLeft' type="checkbox" name="candidateNumber" value="candidate-01" ><label><span ></span>기호 1번</label></div>
+                    <div><label><span ></span>기호 1번</label></div>
+                </div>
+                <div>
+                    <p style='font-size: 3rem' >vs</p>
                 </div>
                 <div id='modal-candidate-right'>
                     <img class='candidate-small' src='image/candidate2.png' alt='candidate2'/>
-                    <div><input id='inputRight' type="checkbox" name="candidateNumber" value="candidate-02" ><label><span ></span>기호 2번</label></div>
+                    <div><label><span ></span>기호 2번</label></div>
                 </div>
             </div>
             <div class='custom-select'>
@@ -51,12 +54,12 @@
                     <option name='major-name' value="28">환경공학과</option>
                 </select>
             </div>
-            {% if user and condition.isVoted %}
-            <input class='alreadySubmit btn-css modal-btn-css' type="button" value='vote'/>
-            {% elseif user %}
-            <input id='voteSubmit' class='btn-css modal-btn-css' type="submit" value='vote'/>
+            {% if user.userId and condition.isVoted %}
+            <input class='alreadySubmit btn-css modal-btn-css' type="button" value='투표 약속'/>
+            {% elseif user.userId %}
+            <input id='voteSubmit' class='btn-css modal-btn-css' type="submit" value='투표 약속'/>
             {% else %}
-            <input class='unSubmit btn-css modal-btn-css' type="button" value='vote'/>
+            <input class='unSubmit btn-css modal-btn-css' type="button" value='투표 약속'/>
             {% endif %}
         </form>
     </div>

@@ -26,21 +26,24 @@
         <div class='section-01'>
             <div class='section-title'>
                 <p>서울과학기술대학교</p>
-                <p>- 총학생회장 선거 실시간 투표 약속 -</p>
+                <p>- 총학생회장 선거 투표 약속 프로젝트 -</p>
             </div>
             <div class='section-img-01'>
-                <img class='vote-image' src='image/university2.png' alt='mainVote'/>
+                <img class='vote-image' src='image/university3.png' alt='mainVote'/>
                 <div class='vote-content font-jua'>
+                    <p class='vote-title'>실시간 투표 약속</p>
+                    <div class='vote-center'>
+                        <span id='percentData' class='vote-percent'>00.0</span>
+                        <span class='vote-percent' >%</span><br>
+                        <span id='countData'  class='vote-count'>0 </span>
+                        <span id='studentData' class='student-count'>/ 11,432</span>
+                    </div>
                     <div class='vote-left'>
-                        <p id='percentLeft' class='vote-percent'>00.0</p>
-                        <p id='countLeft' class='vote-count'>0</p>
                         <p class='candidate-number '>기호 1번</p>
                         <p class='candidate-name ' >김미리</p>
                         <p class='candidate-major '>산업정보시스템전공</p>
                     </div>
                     <div class='vote-right'>
-                        <p id='percentRight' class='vote-percent'>00.0</p>
-                        <p id='countRight' class='vote-count'>0</p>
                         <p class='candidate-number '>기호 2번</p>
                         <p class='candidate-name '>김지민</p>
                         <p class='candidate-major '>기계시스템디자인전공</p>
@@ -66,45 +69,10 @@
     <section>
         <div class='section'>
             <div class='section-title'>
-                <p>총학생회 선거 공약</p>
-            </div>
-            <div class='section-box-03'>
-                <div class='left-box'>
-                    <div class='candidate-box'>
-                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                    </div>
-                    <div class='sns-box'>
-                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                    </div>
-                    <div class='pledge-box'>
-                        {% include "pledgeLeft1.html" %}
-                        {% include "pledgeLeft2.html" %}
-                        {% include "pledgeLeft3.html" %}
-                        
-                    </div>
-                </div>
-                <div class='right-box'>
-                    <div class='candidate-box'>
-                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                    </div>
-                    <div class='sns-box'>
-                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                    </div>
-                    <div class='pledge-box'>
-                        {% include "pledgeRight1.html" %}
-                        {% include "pledgeRight2.html" %}
-                        {% include "pledgeRight3.html" %}
-                    </div>
-                </div>
-            </div>
-            <div class='crud-btn-box'>
-                <a href='/pledge'><button id='pledgeBtn' class='btn-css'>단과대 선거 공약 모음</button></a>
+                <p>서울과기대 공약 정보</p>
             </div>
         </div>
+        {% include 'pledge.html'%}
     </section>
     <section>
         <div class='section'>
@@ -135,5 +103,6 @@
     <script type="text/javascript" src='select.js'></script>
     <script type="text/javascript" src="amcharts.js" ></script>
     <script type="text/javascript" src="/main.js" ></script>
+    <script type='text/javascript' src='/pledge.js'></script>
 </body>
 </html>

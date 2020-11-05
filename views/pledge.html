@@ -1,230 +1,246 @@
-<!DOCTYPE html5>
-<html>
-<head>
-    <title>단과대 선거 공약 모음</title>
-	<meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
-    <link rel="shortcut icon" href="image/favicon9.ico">
-    <link rel="icon" href="image/favicon9.ico">
-    <link href="http://fonts.googleapis.com/css?family=Jua&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="main.css" />
-</head>
-<body>
-    <body class='whole-wrap'>
-        <header id='header'>
-            <div class='header-box'>
-                <div></div>
-                <a href='/' id='main-title' class='anchor-css'><span>UNIV</span><span>VOTE</span></a>
-                <div></div>
-            </div>
-            <div class='header-pledge'>
-                <p>서울과기대 단과대학 공약 모음</p>
-            </div>
-        </header>
-        <main>
-            <div class='slide-wrap'>
-                <div class='slide-box'>
-                    <div class="slide-btn-box">
-                        <button type="button" id="slideBtnPrev" > << </button>
-                        <button type="button" id="slideBtnNext" > >> </button>
+<div class='slide-wrap'>
+    <div class='slide-box'>
+        <div class="slide-btn-box">
+            <button type="button" id="slideBtnPrev" > << </button>
+            <button type="button" id="slideBtnNext" > >> </button>
+        </div>
+        <div id='slide-list'>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[총학생회]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div>
+                            <p class='candidate-small-name font-jua'>김미리(15)</p>
+                            <p class='candidate-small-major font-jua'>산업정보시스템</p>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./association/pledgeLeft1.html" %}
+                            {% include "./association/pledgeLeft2.html" %}
+                            {% include "./association/pledgeLeft3.html" %}
+                            
+                        </div>
                     </div>
-                    <div id='slide-list'>
-                        <div class='section slide-section'>
-                            <div class='section-title'>
-                                <p>공과대학</p>
-                            </div>
-                            <div class='section-box-03'>
-                                <div class='left-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeLeft1.html" %}
-                                        {% include "pledgeLeft2.html" %}
-                                        {% include "pledgeLeft3.html" %}
-                                        
-                                    </div>
-                                </div>
-                                <div class='right-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeRight1.html" %}
-                                        {% include "pledgeRight2.html" %}
-                                        {% include "pledgeRight3.html" %}
-                                    </div>
-                                </div>
-                            </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
                         </div>
-                        <div class='section slide-section'>
-                            <div class='section-title'>
-                                <p>인문사회대학</p>
-                            </div>
-                            <div class='section-box-03'>
-                                <div class='left-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeLeft1.html" %}
-                                        {% include "pledgeLeft2.html" %}
-                                        {% include "pledgeLeft3.html" %}
-                                        
-                                    </div>
-                                </div>
-                                <div class='right-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeRight1.html" %}
-                                        {% include "pledgeRight2.html" %}
-                                        {% include "pledgeRight3.html" %}
-                                    </div>
-                                </div>
-                            </div>
+                        <div>
+                            <p class='candidate-small-name font-jua'>김지민(15)</p>
+                            <p class='candidate-small-major font-jua'>기계시스템디자인</p>
                         </div>
-                        <div class='section slide-section'>
-                            <div class='section-title'>
-                                <p>정보통신대학</p>
-                            </div>
-                            <div class='section-box-03'>
-                                <div class='left-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeLeft1.html" %}
-                                        {% include "pledgeLeft2.html" %}
-                                        {% include "pledgeLeft3.html" %}
-                                        
-                                    </div>
-                                </div>
-                                <div class='right-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeRight1.html" %}
-                                        {% include "pledgeRight2.html" %}
-                                        {% include "pledgeRight3.html" %}
-                                    </div>
-                                </div>
-                            </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
                         </div>
-                        <div class='section slide-section'>
-                            <div class='section-title'>
-                                <p>조형예술대학</p>
-                            </div>
-                            <div class='section-box-03'>
-                                <div class='left-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeLeft1.html" %}
-                                        {% include "pledgeLeft2.html" %}
-                                        {% include "pledgeLeft3.html" %}
-                                        
-                                    </div>
-                                </div>
-                                <div class='right-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeRight1.html" %}
-                                        {% include "pledgeRight2.html" %}
-                                        {% include "pledgeRight3.html" %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class='section slide-section'>
-                            <div class='section-title'>
-                                <p>에너지바이오대학</p>
-                            </div>
-                            <div class='section-box-03'>
-                                <div class='left-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeLeft1.html" %}
-                                        {% include "pledgeLeft2.html" %}
-                                        {% include "pledgeLeft3.html" %}
-                                        
-                                    </div>
-                                </div>
-                                <div class='right-box'>
-                                    <div class='candidate-box'>
-                                        <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
-                                    </div>
-                                    <div class='sns-box'>
-                                        <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
-                                        <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
-                                        <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
-                                    </div>
-                                    <div class='pledge-box'>
-                                        {% include "pledgeRight1.html" %}
-                                        {% include "pledgeRight2.html" %}
-                                        {% include "pledgeRight3.html" %}
-                                    </div>
-                                </div>
-                            </div>
+                        <div class='pledge-box'>
+                            {% include "./association/pledgeRight1.html" %}
+                            {% include "./association/pledgeRight2.html" %}
+                            {% include "./association/pledgeRight3.html" %}
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        {% include "footer.html" %}
-        <script type='text/javascript' src='/pledge.js'></script>
-        <script type='text/javascript' src='/main.js'></script>
-</body>
-</html>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[학생복지위원회]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./welfare/pledgeLeft1.html" %}
+                            {% include "./welfare/pledgeLeft2.html" %}
+                            {% include "./welfare/pledgeLeft3.html" %}
+                            
+                        </div>
+                    </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./welfare/pledgeRight1.html" %}
+                            {% include "./welfare/pledgeRight2.html" %}
+                            {% include "./humanity/pledgeRight3.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[인문사회대학]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./humanity/pledgeLeft1.html" %}
+                            {% include "./humanity/pledgeLeft2.html" %}
+                            {% include "./humanity/pledgeLeft3.html" %}
+                            
+                        </div>
+                    </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./humanity/pledgeRight1.html" %}
+                            {% include "./humanity/pledgeRight2.html" %}
+                            {% include "./humanity/pledgeRight3.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[정보통신대학]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./information/pledgeLeft1.html" %}
+                            {% include "./information/pledgeLeft2.html" %}
+                            {% include "./information/pledgeLeft3.html" %}
+                            
+                        </div>
+                    </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./information/pledgeRight1.html" %}
+                            {% include "./information/pledgeRight2.html" %}
+                            {% include "./information/pledgeRight3.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[공과대학]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./engineering/pledgeLeft1.html" %}
+                            {% include "./engineering/pledgeLeft2.html" %}
+                            {% include "./engineering/pledgeLeft3.html" %}
+                            
+                        </div>
+                    </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./engineering/pledgeRight1.html" %}
+                            {% include "./engineering/pledgeRight2.html" %}
+                            {% include "./engineering/pledgeRight3.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='section slide-section'>
+                <div class='section-title'>
+                    <p>[에너지바이오대학]</p>
+                </div>
+                <div class='section-box-03'>
+                    <div class='left-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate1.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./energy/pledgeLeft1.html" %}
+                            {% include "./energy/pledgeLeft2.html" %}
+                            {% include "./energy/pledgeLeft3.html" %}
+                            
+                        </div>
+                    </div>
+                    <div class='right-box'>
+                        <div class='candidate-box'>
+                            <img class='candidate-small' src='image/candidate2.png' alt='candidateImage'/>
+                        </div>
+                        <div class='sns-box'>
+                            <a href='https://www.instagram.com'><img src='image/instagram.png'/></a>
+                            <a href='https://www.facebook.com'><img src='image/facebook.png'/></a>
+                            <a href='https://www.youtube.com'><img src='image/youtube.png'/></a>
+                        </div>
+                        <div class='pledge-box'>
+                            {% include "./energy/pledgeRight1.html" %}
+                            {% include "./energy/pledgeRight2.html" %}
+                            {% include "./energy/pledgeRight3.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

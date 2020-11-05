@@ -1,8 +1,5 @@
 
-var mainTitle = document.getElementById('main-title');
-mainTitle.addEventListener('click',function(){
-    location.reload();
-})
+
 //새로고침 시, 양식제출 물음 무시
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
@@ -99,7 +96,7 @@ function numberCounter(target_frame, target_number,plus_number,Is_float) {
 numberCounter.prototype.counter = function() {
     var self = this;
     this.diff = this.target_count - this.count;
-    this.diff = this.diff
+    this.diff = this.diff;
     if(this.diff > 0) {
         self.count += this.plus;
     }
@@ -107,7 +104,7 @@ numberCounter.prototype.counter = function() {
     if(this.count < this.target_count) {
         this.timer = setTimeout(function() { self.counter(); }, 30);
     } else {
-        this.target_frame.innerHTML = this.target_count;
+        this.target_frame.innerHTML = this.target_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         clearTimeout(this.timer);
     }
 };
@@ -119,11 +116,11 @@ function calculater(count,sum){
     this.sum = sum;
 };
 calculater.prototype.calcPercent = function(){
-    return this.count/this.sum*100;
+    return (this.count/this.sum)*100;
 };
 
 
-let voteInfo, voteParsed, candidateLeftCount, candidateRightCount = 0;
+let voteInfo, voteParsed, voteCount, studentCount, speed= 0;
 const req = new XMLHttpRequest();
 req.responseType = 'text';
 req.open("GET","voteInfo.json",true);
@@ -131,67 +128,73 @@ req.send(null);
 req.addEventListener("load",function(){
     voteInfo = req.responseText;
     voteParsed = JSON.parse(voteInfo);
-    candidateLeftCount = voteParsed.candidate_01;
-    candidateRightCount = voteParsed.candidate_02;
-    let sum = candidateLeftCount + candidateRightCount;
-    let leftPercent = new calculater(candidateLeftCount,sum).calcPercent();
-    let rightPercent = new calculater(candidateRightCount,sum).calcPercent();
-    
-    new numberCounter("percentLeft", leftPercent, 1.1,true);
-    new numberCounter("percentRight", rightPercent, 1.1,true);
-    new numberCounter("countLeft",candidateLeftCount, 7, false);
-    new numberCounter("countRight",candidateRightCount, 7, false);
+    voteCount = voteParsed.voteCount;
+    studentCount = voteParsed.studentCount;
+    if(voteCount>3000){
+        speed = 47;
+    }else if(voteCount>1000){
+        speed = 37;
+    }else{
+        speed = 17;
+    }
+    const studentData = document.getElementById('studentData');
+    studentData.innerHTML='/ '+studentCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    let votePercent = new calculater(voteCount,studentCount).calcPercent();
+    new numberCounter("percentData", votePercent, 0.7,true);
+    // new numberCounter("percentRight", rightPercent, 1.1,true);
+    new numberCounter("countData",voteCount, speed, false);
+    // new numberCounter("countRight",candidateRightCount, 7, false);
 },false);
 
 
-var checkDouble = function(obj){
-    if(obj.getAttribute('checked')=='true'){
-        obj.removeAttribute('checked');
-    }else{
-        obj.setAttribute('checked','true');
-    }
-};
-var checkAnother = function(obj){
-    if(obj.getAttribute('checked')=='true'){
-        obj.removeAttribute('checked');
-    };
-}
+// var checkDouble = function(obj){
+//     if(obj.getAttribute('checked')=='true'){
+//         obj.removeAttribute('checked');
+//     }else{
+//         obj.setAttribute('checked','true');
+//     }
+// };
+// var checkAnother = function(obj){
+//     if(obj.getAttribute('checked')=='true'){
+//         obj.removeAttribute('checked');
+//     };
+// }
 
-const inputLeft = document.getElementById('inputLeft');
-const inputRight = document.getElementById('inputRight');
-const checkBoxLeft = document.getElementById('modal-candidate-left');
-const checkBoxRight = document.getElementById('modal-candidate-right');
-checkBoxLeft.addEventListener('click',function(){
-    checkAnother(inputRight);
-    checkDouble(inputLeft);
-});
-checkBoxRight.addEventListener('click',function(){
-    checkAnother(inputLeft);
-    checkDouble(inputRight);
-});
+// const inputLeft = document.getElementById('inputLeft');
+// const inputRight = document.getElementById('inputRight');
+// const checkBoxLeft = document.getElementById('modal-candidate-left');
+// const checkBoxRight = document.getElementById('modal-candidate-right');
+// checkBoxLeft.addEventListener('click',function(){
+//     checkAnother(inputRight);
+//     checkDouble(inputLeft);
+// });
+// checkBoxRight.addEventListener('click',function(){
+//     checkAnother(inputLeft);
+//     checkDouble(inputRight);
+// });
 
 
-const isChecked = function(bool){
-    if(bool){
-        return 1;
-    }else{
-        return 0;
-    }
-}
+// const isChecked = function(bool){
+//     if(bool){
+//         return 1;
+//     }else{
+//         return 0;
+//     }
+// }
 
 document.getElementById('voteForm').addEventListener('submit',async (e)=>{
     e.preventDefault();
     //체크된 후보는 1, 아닌 후보는 0을 넘김
-    const candidate_01 = isChecked(e.target.inputLeft.checked);
-    const candidate_02 = isChecked(e.target.inputRight.checked);
-    if(!(candidate_01 || candidate_02)){
-        return alert('후보자를 선택하세요');
-    }
+    // const candidate_01 = isChecked(e.target.inputLeft.checked);
+    // const candidate_02 = isChecked(e.target.inputRight.checked);
+    // if(!(candidate_01 || candidate_02)){
+    //     return alert('후보자를 선택하세요');
+    // }
     //선택된 전공의 majorId 값을 넘김
     const major = e.target.userMajor;
     const majorId = major.options[major.selectedIndex].value;
     try{
-        await axios.post('/vote',{candidate_01,candidate_02,majorId});
+        await axios.post('/vote',{majorId});
         location.reload();
     }catch(err){
         console.error(err);
@@ -318,6 +321,15 @@ likeReq.addEventListener("load",function(){
     likeBtnRight_03.setCount(likeParsed[5].sum);
     likeBtnRight_03.displayCount();
     
+    if(likeBtnLeft_01.objBtn.classList[1] =='unSubmit'  ||
+       likeBtnLeft_02.objBtn.classList[1] =='unSubmit'  ||
+       likeBtnLeft_03.objBtn.classList[1] =='unSubmit'  ||
+       likeBtnRight_01.objBtn.classList[1] =='unSubmit' ||
+       likeBtnRight_02.objBtn.classList[1] =='unSubmit' ||
+       likeBtnRight_03.objBtn.classList[1] =='unSubmit'){
+       return;
+    }
+
     let count = 0;
     let likeId = 0;
     let state = 0;

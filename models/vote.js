@@ -5,11 +5,11 @@ const Sequelize = require('sequelize');
 module.exports = class Vote extends Sequelize.Model{
     static init(sequelize){
         return super.init({
-            candidate_01:{
+            voteCount:{
                 type:Sequelize.INTEGER.UNSIGNED,
                 allowNull:false,
             },
-            candidate_02:{
+            studentCount:{
                 type:Sequelize.INTEGER.UNSIGNED,
                 allowNull:false,
             },
