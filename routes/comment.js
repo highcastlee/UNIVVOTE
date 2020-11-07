@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const {isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const {User, Comment} = require('../models');
+const sanitizeHtml = require('sanitize-html');
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.post('/',isLoggedIn, async (req,res,next)=>{
         user.isCommented = 1;
         await user.save();
         
-        const userComment = req.body.userComment;
+        const userComment = sanitizeHtml(req.body.userComment);
         Comment.create({
             comment: userComment,
             commenter:user.userId,

@@ -9,8 +9,8 @@ router.post('/',isLoggedIn,async (req,res,next)=>{
     try{
         //후보별 득표 수 추가하기
         const voteInfo = await Vote.findOne({});
-        voteInfo.candidate_01 += req.body.candidate_01;
-        voteInfo.candidate_02 += req.body.candidate_02;
+        voteInfo.voteCount += 1;
+        // voteInfo.candidate_02 += req.body.candidate_02;
         await voteInfo.save();
         const voteJSON = JSON.stringify(voteInfo);
         fs.writeFileSync('./public/voteInfo.json',voteJSON);

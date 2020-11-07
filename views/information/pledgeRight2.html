@@ -1,0 +1,14 @@
+
+<div class='pledge-small-box'>
+    <div class='pledge-title'><p>2) 안전한 동아리 활동 보장</p></div>
+    <div class='pledge-text'><p>- 동아리 활동 재개를 위해 방역 및 안전에 노력하겠습니다.<br></p></div>    
+    <div class='pledge-like-box'>
+        {% if user.userId and condition.isLiked23 %}
+        <img id='informationLikeBtnRight-02' class='pledge-like-btn-red' src='#'>
+        {% elseif user.userId %}
+        <img id='informationLikeBtnRight-02' class='pledge-like-btn-blue' src='#'>
+        {% else %}
+        <img id='informationLikeBtnRight-02' class='pledge-like-btn-blue unSubmit' src='#'>
+        {% endif %}        <span id='informationLikeCountRight-02' class='pledge-like-count'>0</span>
+    </div>
+</div>

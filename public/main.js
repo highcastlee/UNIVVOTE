@@ -1,8 +1,5 @@
 
-var mainTitle = document.getElementById('main-title');
-mainTitle.addEventListener('click',function(){
-    location.reload();
-})
+
 //새로고침 시, 양식제출 물음 무시
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
@@ -99,7 +96,7 @@ function numberCounter(target_frame, target_number,plus_number,Is_float) {
 numberCounter.prototype.counter = function() {
     var self = this;
     this.diff = this.target_count - this.count;
-    this.diff = this.diff
+    this.diff = this.diff;
     if(this.diff > 0) {
         self.count += this.plus;
     }
@@ -107,7 +104,7 @@ numberCounter.prototype.counter = function() {
     if(this.count < this.target_count) {
         this.timer = setTimeout(function() { self.counter(); }, 30);
     } else {
-        this.target_frame.innerHTML = this.target_count;
+        this.target_frame.innerHTML = this.target_count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         clearTimeout(this.timer);
     }
 };
@@ -119,11 +116,11 @@ function calculater(count,sum){
     this.sum = sum;
 };
 calculater.prototype.calcPercent = function(){
-    return this.count/this.sum*100;
+    return (this.count/this.sum)*100;
 };
 
 
-let voteInfo, voteParsed, candidateLeftCount, candidateRightCount = 0;
+let voteInfo, voteParsed, voteCount, studentCount, speed= 0;
 const req = new XMLHttpRequest();
 req.responseType = 'text';
 req.open("GET","voteInfo.json",true);
@@ -131,67 +128,73 @@ req.send(null);
 req.addEventListener("load",function(){
     voteInfo = req.responseText;
     voteParsed = JSON.parse(voteInfo);
-    candidateLeftCount = voteParsed.candidate_01;
-    candidateRightCount = voteParsed.candidate_02;
-    let sum = candidateLeftCount + candidateRightCount;
-    let leftPercent = new calculater(candidateLeftCount,sum).calcPercent();
-    let rightPercent = new calculater(candidateRightCount,sum).calcPercent();
-    
-    new numberCounter("percentLeft", leftPercent, 1.1,true);
-    new numberCounter("percentRight", rightPercent, 1.1,true);
-    new numberCounter("countLeft",candidateLeftCount, 7, false);
-    new numberCounter("countRight",candidateRightCount, 7, false);
+    voteCount = voteParsed.voteCount;
+    studentCount = voteParsed.studentCount;
+    if(voteCount>3000){
+        speed = 47;
+    }else if(voteCount>1000){
+        speed = 37;
+    }else{
+        speed = 17;
+    }
+    const studentData = document.getElementById('studentData');
+    studentData.innerHTML='/ '+studentCount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    let votePercent = new calculater(voteCount,studentCount).calcPercent();
+    new numberCounter("percentData", votePercent, 0.7,true);
+    // new numberCounter("percentRight", rightPercent, 1.1,true);
+    new numberCounter("countData",voteCount, speed, false);
+    // new numberCounter("countRight",candidateRightCount, 7, false);
 },false);
 
 
-var checkDouble = function(obj){
-    if(obj.getAttribute('checked')=='true'){
-        obj.removeAttribute('checked');
-    }else{
-        obj.setAttribute('checked','true');
-    }
-};
-var checkAnother = function(obj){
-    if(obj.getAttribute('checked')=='true'){
-        obj.removeAttribute('checked');
-    };
-}
+// var checkDouble = function(obj){
+//     if(obj.getAttribute('checked')=='true'){
+//         obj.removeAttribute('checked');
+//     }else{
+//         obj.setAttribute('checked','true');
+//     }
+// };
+// var checkAnother = function(obj){
+//     if(obj.getAttribute('checked')=='true'){
+//         obj.removeAttribute('checked');
+//     };
+// }
 
-const inputLeft = document.getElementById('inputLeft');
-const inputRight = document.getElementById('inputRight');
-const checkBoxLeft = document.getElementById('modal-candidate-left');
-const checkBoxRight = document.getElementById('modal-candidate-right');
-checkBoxLeft.addEventListener('click',function(){
-    checkAnother(inputRight);
-    checkDouble(inputLeft);
-});
-checkBoxRight.addEventListener('click',function(){
-    checkAnother(inputLeft);
-    checkDouble(inputRight);
-});
+// const inputLeft = document.getElementById('inputLeft');
+// const inputRight = document.getElementById('inputRight');
+// const checkBoxLeft = document.getElementById('modal-candidate-left');
+// const checkBoxRight = document.getElementById('modal-candidate-right');
+// checkBoxLeft.addEventListener('click',function(){
+//     checkAnother(inputRight);
+//     checkDouble(inputLeft);
+// });
+// checkBoxRight.addEventListener('click',function(){
+//     checkAnother(inputLeft);
+//     checkDouble(inputRight);
+// });
 
 
-const isChecked = function(bool){
-    if(bool){
-        return 1;
-    }else{
-        return 0;
-    }
-}
+// const isChecked = function(bool){
+//     if(bool){
+//         return 1;
+//     }else{
+//         return 0;
+//     }
+// }
 
 document.getElementById('voteForm').addEventListener('submit',async (e)=>{
     e.preventDefault();
     //체크된 후보는 1, 아닌 후보는 0을 넘김
-    const candidate_01 = isChecked(e.target.inputLeft.checked);
-    const candidate_02 = isChecked(e.target.inputRight.checked);
-    if(!(candidate_01 || candidate_02)){
-        return alert('후보자를 선택하세요');
-    }
+    // const candidate_01 = isChecked(e.target.inputLeft.checked);
+    // const candidate_02 = isChecked(e.target.inputRight.checked);
+    // if(!(candidate_01 || candidate_02)){
+    //     return alert('후보자를 선택하세요');
+    // }
     //선택된 전공의 majorId 값을 넘김
     const major = e.target.userMajor;
     const majorId = major.options[major.selectedIndex].value;
     try{
-        await axios.post('/vote',{candidate_01,candidate_02,majorId});
+        await axios.post('/vote',{majorId});
         location.reload();
     }catch(err){
         console.error(err);
@@ -270,8 +273,33 @@ Like.prototype={
         }else{
             this.state=true;
         }
+    },
+    addEvent : function(id){
+        let self=this;
+        this.objBtn.addEventListener('click',async function(){
+            self.setClickEvent();
+            let count = self.getCount();
+            let likeId = id;
+            let state = self.state;
+            console.log(likeId);
+            try{
+                await axios.post('/like',{likeId,count,state});
+            }catch(err){
+                console.error(err);
+            }
+        });
+    },
+    checkLogin:function(){
+        return this.objBtn.classList[1] =='unSubmit';
+    },
+    checkLikeState:function(){
+        if(this.objBtn.className=='pledge-like-btn-red'){
+            this.changeLikeState();
+        }
     }
 }
+
+
 
 let likeInfo, likeParsed;
 const likeReq = new XMLHttpRequest();
@@ -281,113 +309,88 @@ likeReq.send(null);
 likeReq.addEventListener("load",function(){
     likeInfo = likeReq.responseText; 
     likeParsed = JSON.parse(likeInfo);
-    var likeBtnLeft_01 = new Like('pledgeLikeBtnLeft-01','pledgeLikeCountLeft-01');
-    var likeBtnLeft_02 = new Like('pledgeLikeBtnLeft-02','pledgeLikeCountLeft-02');
-    var likeBtnLeft_03 = new Like('pledgeLikeBtnLeft-03','pledgeLikeCountLeft-03');
-    var likeBtnRight_01 = new Like('pledgeLikeBtnRight-01','pledgeLikeCountRight-01');
-    var likeBtnRight_02 = new Like('pledgeLikeBtnRight-02','pledgeLikeCountRight-02');
-    var likeBtnRight_03 = new Like('pledgeLikeBtnRight-03','pledgeLikeCountRight-03');
-    if(likeBtnLeft_01.objBtn.className=='pledge-like-btn-red'){
-        likeBtnLeft_01.changeLikeState();
-    }
-    if(likeBtnLeft_02.objBtn.className=='pledge-like-btn-red'){
-        likeBtnLeft_02.changeLikeState();
-    }
-    if(likeBtnLeft_03.objBtn.className=='pledge-like-btn-red'){
-        likeBtnLeft_03.changeLikeState();
-    }
-    if(likeBtnRight_01.objBtn.className=='pledge-like-btn-red'){
-        likeBtnRight_01.changeLikeState();
-    }
-    if(likeBtnRight_02.objBtn.className=='pledge-like-btn-red'){
-        likeBtnRight_02.changeLikeState();
-    }
-    if(likeBtnRight_03.objBtn.className=='pledge-like-btn-red'){
-        likeBtnRight_03.changeLikeState();
-    }
-    likeBtnLeft_01.setCount(likeParsed[0].sum);
-    likeBtnLeft_01.displayCount();
-    likeBtnLeft_02.setCount(likeParsed[1].sum);
-    likeBtnLeft_02.displayCount();
-    likeBtnLeft_03.setCount(likeParsed[2].sum);
-    likeBtnLeft_03.displayCount();
-    likeBtnRight_01.setCount(likeParsed[3].sum);
-    likeBtnRight_01.displayCount();
-    likeBtnRight_02.setCount(likeParsed[4].sum);
-    likeBtnRight_02.displayCount();
-    likeBtnRight_03.setCount(likeParsed[5].sum);
-    likeBtnRight_03.displayCount();
-    
-    let count = 0;
-    let likeId = 0;
-    let state = 0;
-    likeBtnLeft_01.objBtn.addEventListener('click',async (e)=>{
-        likeBtnLeft_01.setClickEvent();
-        count = likeBtnLeft_01.getCount();
-        likeId = 1;
-        state = likeBtnLeft_01.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
+    const setLikeSystem = function(id,obj_1,obj_2,obj_3,obj_4,obj_5,obj_6){
+        obj_1.checkLikeState();
+        obj_2.checkLikeState();
+        obj_3.checkLikeState();
+        obj_4.checkLikeState();
+        obj_5.checkLikeState();
+        obj_6.checkLikeState();
+        obj_1.setCount(likeParsed[id-1].sum);
+        obj_1.displayCount();
+        obj_2.setCount(likeParsed[id].sum);
+        obj_2.displayCount();
+        obj_3.setCount(likeParsed[id+1].sum);
+        obj_3.displayCount();
+        obj_4.setCount(likeParsed[id+2].sum);
+        obj_4.displayCount();
+        obj_5.setCount(likeParsed[id+3].sum);
+        obj_5.displayCount();
+        obj_6.setCount(likeParsed[id+4].sum);
+        obj_6.displayCount();
+        if( obj_1.checkLogin()  ||
+            obj_2.checkLogin()  ||
+            obj_3.checkLogin()  ||
+            obj_4.checkLogin() ||
+            obj_5.checkLogin() ||
+            obj_6.checkLogin()   ){
+            return;
         }
-    });
-    likeBtnLeft_02.objBtn.addEventListener('click',async (e)=>{
-        likeBtnLeft_02.setClickEvent();
-        count = likeBtnLeft_02.getCount();
-        likeId = 2;
-        state = likeBtnLeft_02.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
-        }
-    });
-    likeBtnLeft_03.objBtn.addEventListener('click',async (e)=>{
-        likeBtnLeft_03.setClickEvent();
-        count = likeBtnLeft_03.getCount();
-        likeId = 3;
-        state = likeBtnLeft_03.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
-        }
-    });
-    likeBtnRight_01.objBtn.addEventListener('click',async (e)=>{
-        likeBtnRight_01.setClickEvent();
-        count = likeBtnRight_01.getCount();
-        likeId = 4;
-        state = likeBtnRight_01.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
-        }
-    });
-    likeBtnRight_02.objBtn.addEventListener('click',async (e)=>{
-        likeBtnRight_02.setClickEvent();
-        count = likeBtnRight_02.getCount();
-        likeId = 5;
-        state = likeBtnRight_02.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
-        }
-    });
-    likeBtnRight_03.objBtn.addEventListener('click',async (e)=>{
-        likeBtnRight_03.setClickEvent();
-        count = likeBtnRight_03.getCount();
-        likeId = 6;
-        state = likeBtnRight_03.state;
-        try{
-            await axios.post('/like',{likeId,count,state});
-        }catch(err){
-            console.error(err);
-        }
-    });
+        obj_1.addEvent(id);
+        obj_2.addEvent(id+1);
+        obj_3.addEvent(id+2);
+        obj_4.addEvent(id+3);
+        obj_5.addEvent(id+4);
+        obj_6.addEvent(id+5);
+    }
+    const associationLikeLeft_01 = new Like('associationLikeBtnLeft-01','associationLikeCountLeft-01');
+    const associationLikeLeft_02 = new Like('associationLikeBtnLeft-02','associationLikeCountLeft-02');
+    const associationLikeLeft_03 = new Like('associationLikeBtnLeft-03','associationLikeCountLeft-03');
+    const associationLikeRight_01 = new Like('associationLikeBtnRight-01','associationLikeCountRight-01');
+    const associationLikeRight_02 = new Like('associationLikeBtnRight-02','associationLikeCountRight-02');
+    const associationLikeRight_03 = new Like('associationLikeBtnRight-03','associationLikeCountRight-03');
 
+    const energyLikeLeft_01 = new Like('energyLikeBtnLeft-01','energyLikeCountLeft-01');
+    const energyLikeLeft_02 = new Like('energyLikeBtnLeft-02','energyLikeCountLeft-02');
+    const energyLikeLeft_03 = new Like('energyLikeBtnLeft-03','energyLikeCountLeft-03');
+    const energyLikeRight_01 = new Like('energyLikeBtnRight-01','energyLikeCountRight-01');
+    const energyLikeRight_02 = new Like('energyLikeBtnRight-02','energyLikeCountRight-02');
+    const energyLikeRight_03 = new Like('energyLikeBtnRight-03','energyLikeCountRight-03');
+
+    const engineeringLikeLeft_01 = new Like('engineeringLikeBtnLeft-01','engineeringLikeCountLeft-01');
+    const engineeringLikeLeft_02 = new Like('engineeringLikeBtnLeft-02','engineeringLikeCountLeft-02');
+    const engineeringLikeLeft_03 = new Like('engineeringLikeBtnLeft-03','engineeringLikeCountLeft-03');
+    const engineeringLikeRight_01 = new Like('engineeringLikeBtnRight-01','engineeringLikeCountRight-01');
+    const engineeringLikeRight_02 = new Like('engineeringLikeBtnRight-02','engineeringLikeCountRight-02');
+    const engineeringLikeRight_03 = new Like('engineeringLikeBtnRight-03','engineeringLikeCountRight-03');
+
+    const humanityLikeLeft_01 = new Like('humanityLikeBtnLeft-01','humanityLikeCountLeft-01');
+    const humanityLikeLeft_02 = new Like('humanityLikeBtnLeft-02','humanityLikeCountLeft-02');
+    const humanityLikeLeft_03 = new Like('humanityLikeBtnLeft-03','humanityLikeCountLeft-03');
+    const humanityLikeRight_01 = new Like('humanityLikeBtnRight-01','humanityLikeCountRight-01');
+    const humanityLikeRight_02 = new Like('humanityLikeBtnRight-02','humanityLikeCountRight-02');
+    const humanityLikeRight_03 = new Like('humanityLikeBtnRight-03','humanityLikeCountRight-03');
+
+    const informationLikeLeft_01 = new Like('informationLikeBtnLeft-01','informationLikeCountLeft-01');
+    const informationLikeLeft_02 = new Like('informationLikeBtnLeft-02','informationLikeCountLeft-02');
+    const informationLikeLeft_03 = new Like('informationLikeBtnLeft-03','informationLikeCountLeft-03');
+    const informationLikeRight_01 = new Like('informationLikeBtnRight-01','informationLikeCountRight-01');
+    const informationLikeRight_02 = new Like('informationLikeBtnRight-02','informationLikeCountRight-02');
+    const informationLikeRight_03 = new Like('informationLikeBtnRight-03','informationLikeCountRight-03');
+
+    const welfareLikeLeft_01 = new Like('welfareLikeBtnLeft-01','welfareLikeCountLeft-01');
+    const welfareLikeLeft_02 = new Like('welfareLikeBtnLeft-02','welfareLikeCountLeft-02');
+    const welfareLikeLeft_03 = new Like('welfareLikeBtnLeft-03','welfareLikeCountLeft-03');
+    const welfareLikeRight_01 = new Like('welfareLikeBtnRight-01','welfareLikeCountRight-01');
+    const welfareLikeRight_02 = new Like('welfareLikeBtnRight-02','welfareLikeCountRight-02');
+    const welfareLikeRight_03 = new Like('welfareLikeBtnRight-03','welfareLikeCountRight-03');
+
+    setLikeSystem(1,associationLikeLeft_01,associationLikeLeft_02,associationLikeLeft_03,associationLikeRight_01,associationLikeRight_02,associationLikeRight_03);
+    setLikeSystem(7,welfareLikeLeft_01,welfareLikeLeft_02,welfareLikeLeft_03,welfareLikeRight_01,welfareLikeRight_02,welfareLikeRight_03);
+    setLikeSystem(13,humanityLikeLeft_01,humanityLikeLeft_02,humanityLikeLeft_03,humanityLikeRight_01,humanityLikeRight_02,humanityLikeRight_03);
+    setLikeSystem(19,informationLikeLeft_01,informationLikeLeft_02,informationLikeLeft_03,informationLikeRight_01,informationLikeRight_02,informationLikeRight_03);
+    setLikeSystem(25,engineeringLikeLeft_01,engineeringLikeLeft_02,engineeringLikeLeft_03,engineeringLikeRight_01,engineeringLikeRight_02,engineeringLikeRight_03);
+    setLikeSystem(31,energyLikeLeft_01,energyLikeLeft_02,energyLikeLeft_03,energyLikeRight_01,energyLikeRight_02,energyLikeRight_03);
 });
 
 
