@@ -68,7 +68,6 @@ router.post('/', isLoggedIn,async (req,res,next)=>{
                     user.isLiked12 = isState(req.body.state);
                     break;
                 case 13:
-                    console.log('likeId 13일 때, '+req.body.state +'추가');
                     user.isLiked13 = isState(req.body.state);
                     break;
                 case 14:
@@ -143,8 +142,7 @@ router.post('/', isLoggedIn,async (req,res,next)=>{
                 default:
                     break;
             }
-            console.log('likeId : '+req.body.likeId);
-            console.log('state : '+ req.body.state);
+
             await user.save();
             res.status(201).json(); 
         }catch(err){
