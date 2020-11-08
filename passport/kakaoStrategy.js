@@ -1,7 +1,8 @@
 const passport = require('passport');
 const kakaoStrategy = require('passport-kakao').Strategy;
-
+const crypto = require('crypto');
 const User = require('../models/user');
+const { ConsoleTransportOptions } = require('winston/lib/winston/transports');
 
 module.exports = () =>{
     passport.use(new kakaoStrategy({
@@ -10,17 +11,19 @@ module.exports = () =>{
         session : true,
         passReqToCallback: true,
     }, async(req, accessToken, refreshToken, profile, done)=>{
-        // console.log('kakao profile',profile);
         try{
+            const secretId = crypto.createHash('sha512').update(profile.id.toString()).digest('base64');
+            console.log('이게 해시값 : '+secretId);
             const exUser = await User.findOne({
-                where:{userId:profile.id},
+                where:{userId:secretId},
             });
             req.session.user = req.session.user || exUser;
+            
             if(exUser){
                 done(null,exUser);
             }else{
                 const newUser = await User.create({
-                    userId: profile.id,
+                    userId: secretId,
                 });
                 done(null,newUser);
             }

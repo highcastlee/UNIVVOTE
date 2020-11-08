@@ -6,7 +6,8 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const session = require('cookie-session');
+const session = require('express-session');
+const fileStore = require('session-file-store')(session);
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
 // ./models는 ./models/index.js와 같은 의미
@@ -31,7 +32,6 @@ dotenv.config();
 //     password: process.env.REDIS_PASSWORD,
 // });
 const passportConfig = require('./passport');
-const { timeStamp } = require("console");
 
 const app = express();
 app.set('port',process.env.PORT || 8080);
@@ -70,12 +70,13 @@ const sessionOptions = {
     resave:false,
     saveUninitialized:false,
     secret:process.env.COOKIE_SECRET,
-    keys:['key'],
+    keys:['secret'],
     cookie:{
         httpOnly:true,
-        secure:true,
-        maxAge: 60 * 60 * 1000,
+        secure:false,
+        maxAge: 24 * 60 * 60 * 1000,
     },
+    store: new fileStore()
     // store: new RedisStore({client:redisClient}),
 };
 if(process.env.NODE_ENV === 'production'){
