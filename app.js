@@ -70,6 +70,7 @@ const sessionOptions = {
     resave:false,
     saveUninitialized:false,
     secret:process.env.COOKIE_SECRET,
+    keys:['key'],
     cookie:{
         httpOnly:true,
         secure:true,
