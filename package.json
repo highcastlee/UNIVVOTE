@@ -6,8 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production PORT=80 pm2 start app.js -i -1",
     "dev": "nodemon server",
-    "test": "jest",
-    "build": "webpack"
+    "test": "jest"
   },
   "author": "castle",
   "license": "MIT",
