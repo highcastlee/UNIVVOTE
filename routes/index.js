@@ -5,7 +5,7 @@ const {isLoggedIn, isNotLoggedIn} = require('./middlewares');
 const router = express.Router();
 
 router.use((req,res,next)=>{
-    res.session = req.session.user;
+    res.session = req.session;
     next();
 });
 
@@ -21,7 +21,6 @@ router.get('/',async (req,res,next)=>{
         }else{
             user = {userId:null};
         }
-    
         const condition = await User.findOne({
             where:{userId:user.userId}
         });
