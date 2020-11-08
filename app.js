@@ -57,7 +57,7 @@ if(process.env.NODE_ENV === 'production'){
     app.use(morgan('dev'));
 }
 
-app.use('/',express.static(path.join(__dirname,'UNIVVOTE')));
+app.use('/',express.static(path.join(__dirname,'/')));
 
 //public 폴더의 정적 파일 제공
 app.use(express.static('public'));
