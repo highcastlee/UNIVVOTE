@@ -4,7 +4,11 @@
     <title>UNIVVOTE</title>
 	<meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes ">
-
+    <meta http-equiv="Content-Security-Policy" content=
+    "default-src *;
+     script-src 'self' 'unsafe-inline' https://unpkg.com/axios/dist/axios.min.js http://unpkg.com/axios/dist/axios.min.js;
+     style-src 'self' 'unsafe-inline' *;
+    ">
     <link rel="shortcut icon" href="image/favicon9.ico">
     <link rel="icon" href="image/favicon9.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua&family=Noto+Sans+KR:wght@100&display=swap" type="text/css">
@@ -101,6 +105,7 @@
     {% include "footer.html" %}
     
     <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src='select.js'></script>
     <script type="text/javascript" src="amcharts.js" ></script>
     <script type="text/javascript" src="/main.js" ></script>
