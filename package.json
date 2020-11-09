@@ -9,6 +9,7 @@
   "author": "castle",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "connect-redis": "^5.0.0",
