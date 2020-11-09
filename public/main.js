@@ -193,12 +193,23 @@ document.getElementById('voteForm').addEventListener('submit',async (e)=>{
     //선택된 전공의 majorId 값을 넘김
     const major = e.target.userMajor;
     const majorId = major.options[major.selectedIndex].value;
-    try{
-        await axios.post('/vote',{majorId});
-        location.reload();
-    }catch(err){
-        console.error(err);
-    }
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      if (xhr.status === 200 || xhr.status === 201) {
+        console.log(xhr.responseText);
+      } else {
+        console.error(xhr.responseText);
+      }
+    };
+    xhr.open('POST', '/vote', true);
+    xhr.setRequestHeader('Content-Type', 'application/json'); 
+    xhr.send(majorId); // 데이터를 stringify해서 보냄
+    // try{
+    //     await axios.post('/vote',{majorId});
+    //     location.reload();
+    // }catch(err){
+    //     console.error(err);
+    // }
 });
 
 const unSubmit = document.getElementsByClassName('unSubmit')
