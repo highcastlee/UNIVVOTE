@@ -145,6 +145,11 @@ body{
     max-height: 80%;
     height: 20rem;
     width: 30rem;
+    
+}
+.kakao p{
+    font-family: 'Jua';
+    color: lightgray;
 }
 .login-banner{
     padding-top: 2.5rem;
