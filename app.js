@@ -10,7 +10,6 @@ const session = require('express-session');
 const fileStore = require('session-file-store')(session);
 const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
-// ./models는 ./models/index.js와 같은 의미
 const {sequelize}= require('./models');
 
 const indexRouter = require('./routes/index');
@@ -23,18 +22,12 @@ const passport = require('passport');
 const logger = require('./logger');
 const helmet = require('helmet');
 const hpp = require('hpp');
-// const redis = require('redis');
-// const RedisStore = require('connect-redis')(session);
 
 dotenv.config();
-// const redisClient = redis.createClient({
-//     url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-//     password: process.env.REDIS_PASSWORD,
-// });
 const passportConfig = require('./passport');
 
 const app = express();
-app.set('port',process.env.PORT || 8080);
+app.set('port',process.env.PORT || 80);
 app.set('view engine','html');
 
 nunjucks.configure('views',{

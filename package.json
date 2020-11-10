@@ -9,6 +9,7 @@
   "author": "castle",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "connect-redis": "^5.0.0",
@@ -39,5 +40,11 @@
     "serve-favicon": "^2.5.0",
     "session-file-store": "^1.5.0",
     "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
   }
 }
