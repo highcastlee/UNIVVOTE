@@ -454,9 +454,12 @@ input[type="checkbox"] {
     margin: 0;
     color:#dbdbdb;
 }
+.candidate-position{
+    margin: 0;
+}
 .candidate-small-name{
     margin:0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .candidate-small-major{
     margin: 0;
