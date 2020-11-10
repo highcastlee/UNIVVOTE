@@ -19,6 +19,7 @@ router.post('/',isLoggedIn,async (req,res,next)=>{
         const major = await Major.findOne({
             where:{majorId:req.body.majorId}
         });
+        console.log('votePost 실행'+req.body.majorId);
         major.voteCount +=1;
         await major.save();
         

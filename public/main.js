@@ -1,5 +1,4 @@
 
-
 //새로고침 시, 양식제출 물음 무시
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
@@ -193,17 +192,19 @@ document.getElementById('voteForm').addEventListener('submit',async (e)=>{
     //선택된 전공의 majorId 값을 넘김
     const major = e.target.userMajor;
     const majorId = major.options[major.selectedIndex].value;
+    const data = {'majorId':majorId};
     const xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.onreadystatechange = function() {
       if (xhr.status === 200 || xhr.status === 201) {
         console.log(xhr.responseText);
-      } else {
+      }else {
         console.error(xhr.responseText);
       }
     };
     xhr.open('POST', '/vote', true);
     xhr.setRequestHeader('Content-Type', 'application/json'); 
-    xhr.send(majorId); // 데이터를 stringify해서 보냄
+    xhr.send(JSON.stringify(data)); // 데이터를 stringify해서 보냄
+    location.reload();
     // try{
     //     await axios.post('/vote',{majorId});
     //     location.reload();
@@ -234,7 +235,18 @@ document.getElementById('writeForm').addEventListener('submit',async (e)=>{
         return alert('내용을 입력하세요');
     }
     try{
-        await axios.post('/comment',{userComment});
+        const commentData = {'userComment':userComment};
+        const commentXhr = new XMLHttpRequest();
+        commentXhr.onreadystatechange = function() {
+        if (commentXhr.status === 200 || commentXhr.status === 201) {
+            console.log(commentXhr.responseText);
+        }else {
+            console.error(commentXhr.responseText);
+        }
+        };
+        commentXhr.open('POST', '/comment', true);
+        commentXhr.setRequestHeader('Content-Type', 'application/json'); 
+        commentXhr.send(JSON.stringify(commentData)); // 데이터를 stringify해서 보냄
         location.reload();
     }catch(err){
         console.error(err);
@@ -294,7 +306,12 @@ Like.prototype={
             let state = self.state;
             console.log(likeId);
             try{
-                await axios.post('/like',{likeId,count,state});
+                const likeData = {'count':count,'likeId':likeId,'state':state};
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '/like', true);
+                xhr.setRequestHeader('Content-Type', 'application/json'); 
+                xhr.send(JSON.stringify(likeData)); // 데이터를 stringify해서 보냄
+                // await axios.post('/like',{likeId,count,state});
             }catch(err){
                 console.error(err);
             }
