@@ -368,9 +368,19 @@ input[type="checkbox"] {
 .section-img-01{
     position: relative;
 }
+.vote-image{
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
+}
 .vote-content{
     position: absolute;
     width:100%;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
 }
 .vote-title{
     font-size: 2rem;
