@@ -18,7 +18,7 @@ router.post('/', isLoggedIn,async (req,res,next)=>{
             const likeInfo = await Like.findOne({
                 where: { likeId : req.body.likeId},
             });
-            likeInfo.sum = 0;
+            likeInfo.sum = req.body.count;
             await likeInfo.save();
             // LikeJson 파일 업데이트해서 다시 저장
             const likes = await Like.findAll({});
