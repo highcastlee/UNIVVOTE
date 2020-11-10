@@ -304,7 +304,6 @@ Like.prototype={
             let count = self.getCount();
             let likeId = id;
             let state = self.state;
-            console.log(likeId);
             try{
                 const likeData = {'count':count,'likeId':likeId,'state':state};
                 const xhr = new XMLHttpRequest();
