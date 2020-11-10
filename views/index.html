@@ -34,17 +34,17 @@
         <div class='section-01'>
             <div class='section-title'>
                 <p>서울과학기술대학교</p>
-                <p>- 총학생회장 선거 투표 약속 프로젝트 -</p>
+                <p>- 총학생회 선거 예상 투표율 -</p>
             </div>
             <div class='section-img-01'>
                 <img class='vote-image' src='image/university3.png' alt='mainVote'/>
                 <div class='vote-content font-jua'>
-                    <p class='vote-title'>실시간 투표 약속</p>
+                    <p class='vote-title'>실시간 예상 투표율</p>
                     <div class='vote-center'>
                         <span id='percentData' class='vote-percent'>00.0</span>
                         <span class='vote-percent' >%</span><br>
                         <span id='countData'  class='vote-count'>0 </span>
-                        <span id='studentData' class='student-count'>/ 11,432</span>
+                        <span id='studentData' class='student-count'>/ 11,782</span>
                     </div>
                     <div class='vote-left'>
                         <p class='candidate-number '>기호 1번</p>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class='section-btn-01'>
-                <button id='voteBtn' class='btn-css' value='VOTE'>투표 약속하기</button>
+                <button id='voteBtn' class='btn-css' value='VOTE'>투표 약속</button>
                 <!-- <p><a id='realVoteLink' href='http://www.seoultech.ac.kr/'>실제 투표하러 가기</a></p> -->
             </div>
         </div>
@@ -67,7 +67,7 @@
     <section>
         <div class='section'>
             <div class='section-title'>
-                <p>학과별 투표 약속 TOP10</p>
+                <p>학과별 예상 투표 수 TOP10</p>
             </div>
             <div id="chartdiv"></div>
             
@@ -90,7 +90,7 @@
                 {% for comment in comments %}
                 <div class="crud-content">
                     <div class='content-user'>
-                        <span>{{comment.id}}번째 메시지  | </span>
+                        <span>친절한 과기인  | </span>
                         <span>{{comment.created_at.toLocaleDateString()}}</span>
                     </div>
                     <div>

@@ -145,10 +145,13 @@ body{
     max-height: 80%;
     height: 20rem;
     width: 30rem;
+    
 }
-.login-banner{
-    padding-top: 2.5rem;
+.kakao p{
+    font-family: 'Jua';
+    color: lightgray;
 }
+
 
 
 /* URL 버튼 모달 영역 */
@@ -307,6 +310,7 @@ input[type="checkbox"] {
     box-sizing: border-box;
     margin-top: 0.2em;
     padding-top: 0.4rem;
+    margin-left: -1.5rem;
     font-size: 1.5rem;
     font-family: 'Jua', sans-serif;
 }
@@ -368,9 +372,19 @@ input[type="checkbox"] {
 .section-img-01{
     position: relative;
 }
+.vote-image{
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
+}
 .vote-content{
     position: absolute;
     width:100%;
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; 
+    -webkit-animation: fadein 2s;
+    -o-animation: fadein 2s;
 }
 .vote-title{
     font-size: 2rem;
@@ -440,9 +454,12 @@ input[type="checkbox"] {
     margin: 0;
     color:#dbdbdb;
 }
+.candidate-position{
+    margin: 0;
+}
 .candidate-small-name{
     margin:0;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .candidate-small-major{
     margin: 0;
@@ -777,7 +794,7 @@ button:focus{
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: 175rem;
+    width: 280rem;
 }
 .slide-section{
     width: 35rem;

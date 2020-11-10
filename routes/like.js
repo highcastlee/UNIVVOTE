@@ -139,6 +139,42 @@ router.post('/', isLoggedIn,async (req,res,next)=>{
                 case 36:
                     user.isLiked36 = isState(req.body.state);
                     break;
+                case 37:
+                    user.isLiked37 = isState(req.body.state);
+                    break;
+                case 38:
+                    user.isLiked38 = isState(req.body.state);
+                    break;
+                case 39:
+                    user.isLiked39 = isState(req.body.state);
+                    break;
+                case 40:
+                    user.isLiked40 = isState(req.body.state);
+                    break;
+                case 41:
+                    user.isLiked41 = isState(req.body.state);
+                    break;
+                case 42:
+                    user.isLiked42 = isState(req.body.state);
+                    break;
+                case 43:
+                    user.isLiked43 = isState(req.body.state);
+                    break;
+                case 44:
+                    user.isLiked44 = isState(req.body.state);
+                    break;
+                case 45:
+                    user.isLiked45 = isState(req.body.state);
+                    break;
+                case 46:
+                    user.isLiked46 = isState(req.body.state);
+                    break;
+                case 47:
+                    user.isLiked47 = isState(req.body.state);
+                    break;
+                case 48:
+                    user.isLiked48 = isState(req.body.state);
+                    break;
                 default:
                     break;
             }
