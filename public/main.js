@@ -413,12 +413,29 @@ likeReq.addEventListener("load",function(){
     const welfareLikeRight_02 = new Like('welfareLikeBtnRight-02','welfareLikeCountRight-02');
     const welfareLikeRight_03 = new Like('welfareLikeBtnRight-03','welfareLikeCountRight-03');
 
+    const artLikeLeft_01 = new Like('artLikeBtnLeft-01','artLikeCountLeft-01');
+    const artLikeLeft_02 = new Like('artLikeBtnLeft-02','artLikeCountLeft-02');
+    const artLikeLeft_03 = new Like('artLikeBtnLeft-03','artLikeCountLeft-03');
+    const artLikeRight_01 = new Like('artLikeBtnRight-01','artLikeCountRight-01');
+    const artLikeRight_02 = new Like('artLikeBtnRight-02','artLikeCountRight-02');
+    const artLikeRight_03 = new Like('artLikeBtnRight-03','artLikeCountRight-03');
+
+    const clubLikeLeft_01 = new Like('clubLikeBtnLeft-01','clubLikeCountLeft-01');
+    const clubLikeLeft_02 = new Like('clubLikeBtnLeft-02','clubLikeCountLeft-02');
+    const clubLikeLeft_03 = new Like('clubLikeBtnLeft-03','clubLikeCountLeft-03');
+    const clubLikeRight_01 = new Like('clubLikeBtnRight-01','clubLikeCountRight-01');
+    const clubLikeRight_02 = new Like('clubLikeBtnRight-02','clubLikeCountRight-02');
+    const clubLikeRight_03 = new Like('clubLikeBtnRight-03','clubLikeCountRight-03');
+
     setLikeSystem(1,associationLikeLeft_01,associationLikeLeft_02,associationLikeLeft_03,associationLikeRight_01,associationLikeRight_02,associationLikeRight_03);
     setLikeSystem(7,welfareLikeLeft_01,welfareLikeLeft_02,welfareLikeLeft_03,welfareLikeRight_01,welfareLikeRight_02,welfareLikeRight_03);
+    setLikeSystem(43,clubLikeLeft_01,clubLikeLeft_02,clubLikeLeft_03,clubLikeRight_01,clubLikeRight_02,clubLikeRight_03);
     setLikeSystem(13,humanityLikeLeft_01,humanityLikeLeft_02,humanityLikeLeft_03,humanityLikeRight_01,humanityLikeRight_02,humanityLikeRight_03);
     setLikeSystem(19,informationLikeLeft_01,informationLikeLeft_02,informationLikeLeft_03,informationLikeRight_01,informationLikeRight_02,informationLikeRight_03);
     setLikeSystem(25,engineeringLikeLeft_01,engineeringLikeLeft_02,engineeringLikeLeft_03,engineeringLikeRight_01,engineeringLikeRight_02,engineeringLikeRight_03);
     setLikeSystem(31,energyLikeLeft_01,energyLikeLeft_02,energyLikeLeft_03,energyLikeRight_01,energyLikeRight_02,energyLikeRight_03);
+    setLikeSystem(37,artLikeLeft_01,artLikeLeft_02,artLikeLeft_03,artLikeRight_01,artLikeRight_02,artLikeRight_03);
+
 });
 
 

@@ -777,7 +777,7 @@ button:focus{
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: 175rem;
+    width: 280rem;
 }
 .slide-section{
     width: 35rem;

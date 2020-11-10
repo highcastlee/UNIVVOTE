@@ -200,6 +200,66 @@ module.exports = class User extends Sequelize.Model{
                 allowNull:false,
                 defaultValue:0,
             },
+            isLiked37:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked38:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked39:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked40:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked41:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked42:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked43:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked44:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked45:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked46:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked47:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
+            isLiked48:{
+                type:Sequelize.BOOLEAN,
+                allowNull:false,
+                defaultValue:0,
+            },
             
             created_at:{
                 type:Sequelize.DATE,
