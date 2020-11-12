@@ -440,3 +440,9 @@ likeReq.addEventListener("load",function(){
 
 
 
+const anchor = document.getElementsByClassName('anchor');
+for(let i=0; i<anchor.length; i++){
+    anchor[i].addEventListener('click',function(e){
+        e.preventDefault();
+    });
+};

@@ -1,3 +1,4 @@
+/* @import "reset.css" ; */
 
 body{
     display:grid;
@@ -23,9 +24,6 @@ body{
     .vote-content{
         top:5%;
     }
-    .section{
-        width:100%;
-    }
 
 
 }
@@ -44,9 +42,6 @@ body{
     }
     .vote-content{
         top:5%;
-    }
-    .section{
-        width:100%;
     }
 }
 
@@ -205,12 +200,8 @@ body{
     flex-direction: row;
     justify-content: space-around;
 }
-#modal-candidate-left, #modal-candidate-right{
-    cursor: pointer;
-}
-input[type="checkbox"] {
-    display:none;
-}
+
+
 
 
 
@@ -387,7 +378,7 @@ input[type="checkbox"] {
     -o-animation: fadein 2s;
 }
 .vote-title{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin-top: 2.5rem;
     font-style: italic;
     margin-bottom: 0;
@@ -508,6 +499,7 @@ input[type="checkbox"] {
 
 
 .section{
+    width: 100%;
     margin: 5rem auto 0;
     text-align: center;
 }
@@ -517,7 +509,6 @@ input[type="checkbox"] {
     width: 100%;
     height: 40rem;
     font-size: 1rem;
-    /* font-family: 'Noto Sans KR', sans-serif; */
     font-weight: bold;
 
 }
@@ -535,6 +526,16 @@ input[type="checkbox"] {
     margin-top: 2rem;
     width: 100%;
 }
+.candidate-box{
+    width: 15rem;
+    margin: 0 auto;
+    height: 10rem;
+}
+.versus{
+    margin-top: 1.5rem;
+    width: 7rem;
+    height: 7rem;
+}
 .left-box{
     width: 50%;
     border-right: 1px solid rgb(143, 143, 143);
@@ -550,10 +551,11 @@ input[type="checkbox"] {
     -webkit-animation: fadein 2s; 
      -o-animation: fadein 2s; 
 }
+
 .candidate-small{
     margin:1rem;
     width: 8rem;
-    height: 7.5rem;
+    height: 8rem;
 }
 
 
@@ -572,6 +574,7 @@ input[type="checkbox"] {
     padding: 0 0.5rem;
 }
 .pledge-small-box{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -583,16 +586,36 @@ input[type="checkbox"] {
     background: linear-gradient(160deg, rgb(25 31 44), rgb(55 68 97) 90%);
 }
 
+.versus-small-box{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+    text-align: left;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    height: 12rem;
+    background: linear-gradient(160deg, rgb(25 31 44), rgb(85 50 50) 90%)
+}
 .pledge-title p{
     font-size: 1rem;
     font-family: 'Jua',sans-serif;
 }
-.pledge-text p{
+.pledge-text pre{
+    position: absolute;
+    top: 3.5rem;
+    width: 90%;
+    height: 7rem;
+    overflow-y: hidden;
+    white-space: pre-wrap;
     font-size: 1rem;
     color:rgb(175, 175, 175);
     font-family: 'Jua',sans-serif;
 }
 .pledge-like-box{
+    position: absolute;
+    bottom:1rem;
     display: inline;
     width: 5rem;
 }
@@ -658,11 +681,17 @@ input[type="checkbox"] {
     width: 28rem;
     word-break:break-all; 
 }
-
-
-
 .crud-btn-box{
     margin-top: 2rem;
+}
+
+.calendar-wrap{
+    margin-top:3rem;
+}
+.calendar{
+    width: 100%;
+    border-radius: 3rem;
+
 }
 
 .footer{
