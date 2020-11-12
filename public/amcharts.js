@@ -8,17 +8,13 @@ window.onload = function(){
   req.send(null);
   req.addEventListener("load",function(){
       jsonObj = req.responseText;
-      // console.log("majorName JSON : "+jsonObj);
       majorInfo = jsonObj;
       majorParsed = JSON.parse(majorInfo);
       
       
       am4core.ready(function() {
-        // console.log('am4core 실행됨!!!!!!!!!!!!!!!!');
-        // Themes begin
         am4core.useTheme(am4themes_dark);
         am4core.useTheme(am4themes_animated);
-        // Themes end
 
         var chart = am4core.create("chartdiv", am4charts.XYChart);
         chart.padding(40, 40, 40, 40);
@@ -47,14 +43,11 @@ window.onload = function(){
         labelBullet.locationX = 1;
 
         var t = {_value: {r: 82, g: 89, b: 223}};
-        // as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
         series.columns.template.adapter.add("fill", function(fill, target){
-          // console.log(chart.colors.getIndex(target.));
           return t._value;
         });
 
         categoryAxis.sortBySeries = series;
-        // console.log(majorParsed);
         chart.data = majorParsed;
     });
   },false);
