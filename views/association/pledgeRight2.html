@@ -1,14 +1,21 @@
 
 <div class='pledge-small-box'>
-    <div class='pledge-title'><p>2) 안전한 동아리 활동 보장</p></div>
-    <div class='pledge-text'><p>- 동아리 활동 재개를 위해 방역 및 안전에 노력하겠습니다.<br></p></div>    
+    <div class='pledge-title'><p>5) 인권 및 복지</p></div>
+    <div class='pledge-text'>
+        <pre>- 학생지도위원회 학생위원 참여
+- 국제학생회,유학생회 연계사업 진행
+- 외부 업체 제휴로 학생 편의 증대
+- 상권연계사업 확대
+- 도서관 열람실 내 빈자리 순찰제 도입 추진
+        </pre>
+    </div>    
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked5 %}
-        <img id='associationLikeBtnRight-02' class='pledge-like-btn-red' src='#'>
+        <img id='associationLikeBtnRight-02'class='pledge-like-btn-red' src='image/heartRed.png'> 
         {% elseif user.userId %}
-        <img id='associationLikeBtnRight-02' class='pledge-like-btn-blue' src='#'>
+        <img id='associationLikeBtnRight-02'class='pledge-like-btn-blue' src='image/heartBlue.png'> 
         {% else %}
-        <img id='associationLikeBtnRight-02' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='associationLikeBtnRight-02'class='pledge-like-btn-blue unSubmit' src='image/heartBlue.png'> 
         {% endif %}        
         <span id='associationLikeCountRight-02' class='pledge-like-count'>0</span>
     </div>

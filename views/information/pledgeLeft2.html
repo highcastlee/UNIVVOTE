@@ -1,14 +1,17 @@
 
 <div class='pledge-small-box'>
-    <div class='pledge-title'><p>2) 안전한 동아리 활동 보장</p></div>
-    <div class='pledge-text'><p>- 동아리 활동 재개를 위해 방역 및 안전에 노력하겠습니다.<br></p></div>    
+    <div class='pledge-title'><p>2) 체육대회 개최</p></div>
+    <div class='pledge-text'>
+        <pre>- E스포츠를 포함한 체육대회 개최
+</pre>
+    </div>      
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked20 %}
-        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-red' src='#'>
+        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-red' src='image/heartRed.png'>
         {% elseif user.userId %}
-        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-blue' src='#'>
+        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-blue' src='image/heartBlue.png'>
         {% else %}
-        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='informationLikeBtnLeft-02' class='pledge-like-btn-blue unSubmit' src='image/heartBlue.png'>
         {% endif %}
         <span id='informationLikeCountLeft-02' class='pledge-like-count'>0</span>
     </div>

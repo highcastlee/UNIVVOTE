@@ -1,14 +1,20 @@
 
 <div class='pledge-small-box'>
-    <div class='pledge-title'><p>1) 학교 체육관 및 운동장 개방</p></div>
-    <div class='pledge-text'><p>- 코로나 19로 인해 폐쇄했던 체육관과 운동장을 전면 개방하겠습니다.<br></p></div>     
+    <div class='pledge-title'><p>2) 운영</p></div>
+    <div class='pledge-text'>
+        <pre>- 결산안 프린트하여 교내 게시
+- 공약 이행 보고
+- 정기 카드 뉴스 업로드 
+- 공과대학 학생회 홈페이지 리뉴얼
+</pre>
+    </div>    
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked28 %}
-        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-red' src='#'>
+        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-red' src='image/heartRed.png'>
         {% elseif user.userId %}
-        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-blue' src='#'>
+        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-blue' src='image/heartBlue.png'>
         {% else %}
-        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='engineeringLikeBtnRight-01' class='pledge-like-btn-blue unSubmit' src='image/heartBlue.png'>
         {% endif %}
         <span id='engineeringLikeCountRight-01' class='pledge-like-count'>0</span>
     </div>

@@ -2,11 +2,11 @@
 //새로고침 시, 양식제출 물음 무시
 if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
-}
+};
 
 function Modal(id){
     this.obj = document.getElementById(id);
-}
+};
 
 Modal.prototype.openModal = function(){
     this.obj.setAttribute("style","display:block; z-Index:999; animation: modal-fadein 1s;");
@@ -285,9 +285,9 @@ Like.prototype={
     },
     changeLikeBtn : function(){
         if(this.state){
-            this.objBtn.style.backgroundImage = 'url(image/heartBlue.png)';
+            this.objBtn.setAttribute("src",'image/heartBlue.png');
         }else{
-            this.objBtn.style.backgroundImage = 'url(image/heartRed.png)';
+            this.objBtn.setAttribute("src",'image/heartRed.png');
         }
     },
     changeLikeState : function(){
@@ -440,3 +440,9 @@ likeReq.addEventListener("load",function(){
 
 
 
+const anchor = document.getElementsByClassName('anchor');
+for(let i=0; i<anchor.length; i++){
+    anchor[i].addEventListener('click',function(e){
+        e.preventDefault();
+    });
+};

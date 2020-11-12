@@ -9,25 +9,22 @@
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="https://univvote.com"/>
     <meta property="og:image" content="https://postfiles.pstatic.net/MjAyMDExMTFfMjkg/MDAxNjA1MDU2NDgxNDU4.6_GMWfPc6WWl2740EvLipCmrwzszijKYxDrCr19e5Cgg.NeAJcdjxld0eceWrdhfGt9s5HyrUswlZDUoxmInK6SEg.PNG.highcastlee/univvote.png?type=w966"/>
-
-
     <link rel="shortcut icon" href="image/favicon9.ico">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Jua&family=Noto+Sans+KR:wght@100&display=swap" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="main.css" />
     <link rel="stylesheet" href="select.css" />
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script> -->
     <script type="text/javascript" src="amcharts4/core.js"></script>
     <script type="text/javascript" src="amcharts4/charts.js"></script>
     <script type="text/javascript" src="amcharts4/themes/dark.js"></script>
     <script type="text/javascript" src="amcharts4/themes/animated.js"></script>
+    <script type="text/javascript" src="amcharts.js" ></script>
 </head>
 <body class='whole-wrap'>
     {% include 'loginModal.html' %}
     {% include 'urlModal.html' %}
     {% include 'voteModal.html' %}
     {% include 'writeModal.html' %}
-    <!-- page 본문 영역 -->
     {% include 'header.html'%}
     <section>
         <div class='section-01'>
@@ -36,24 +33,24 @@
                 <p>- 총학생회 선거 예상 투표율 -</p>
             </div>
             <div class='section-img-01'>
-                <img class='vote-image' src='image/university3.png' alt='mainVote'/>
+                <img class='vote-image' src='image/main2.png' alt='mainVote'/>
                 <div class='vote-content font-jua'>
                     <p class='vote-title'>실시간 예상 투표율</p>
                     <div class='vote-center'>
-                        <span id='percentData' class='vote-percent'>00.0</span>
+                        <span id='percentData' class='vote-percent'>...Loading</span>
                         <span class='vote-percent' >%</span><br>
                         <span id='countData'  class='vote-count'>0 </span>
                         <span id='studentData' class='student-count'>/ 11,782</span>
                     </div>
                     <div class='vote-left'>
                         <p class='candidate-number '>정학생회장</p>
-                        <p class='candidate-name ' >김미리</p>
-                        <p class='candidate-major '>산업정보시스템전공(16)</p>
+                        <p class='candidate-name ' >이명인</p>
+                        <p class='candidate-major '>행정학과(15)</p>
                     </div>
                     <div class='vote-right'>
                         <p class='candidate-number '>부학생회장</p>
-                        <p class='candidate-name '>김지민</p>
-                        <p class='candidate-major '>기계시스템디자인전공(18)</p>
+                        <p class='candidate-name '>천광희</p>
+                        <p class='candidate-major '>산업정보시스템전공(15)</p>
                     </div>
                 </div>
             </div>
@@ -69,7 +66,6 @@
                 <p>학과별 예상 투표 수 TOP10</p>
             </div>
             <div id="chartdiv"></div>
-            
         </div>
     </section>
     <section>
@@ -79,6 +75,16 @@
             </div>
         </div>
         {% include 'pledgeLayout.html'%}
+    </section>
+    <section>
+        <div class='section'>
+            <div class='section-title'>
+                <p>서울과기대 11월 선거 일정</p>
+            </div>
+        </div>
+        <div class='calendar-wrap'>
+            <img class='calendar' src='image/calendar.png' alt='calendar'/>
+        </div>
     </section>
     <section>
         <div class='section'>
@@ -104,11 +110,9 @@
         </div>
     </section>
     {% include "footer.html" %}
-    
-
+    <script type="text/javascript" src='amcharts.js'></script>
+    <script type="text/javascript" src='pledge.js'></script>
     <script type="text/javascript" src='select.js'></script>
-    <script type="text/javascript" src="amcharts.js" ></script>
-    <script type="text/javascript" src="main.js" ></script>
-    <script type='text/javascript' src='pledge.js'></script>
+    <script type="text/javascript" src='../dist/main.js'></script>
 </body>
 </html>

@@ -15,7 +15,6 @@ router.get('/',async (req,res,next)=>{
             order:[['created_at','DESC']],
             limit:4,
         });
-        console.log(comments);
         let user = null;
         if(req.session.user){
             user = req.session.user;
