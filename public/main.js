@@ -285,9 +285,9 @@ Like.prototype={
     },
     changeLikeBtn : function(){
         if(this.state){
-            this.objBtn.style.backgroundImage = 'url(image/heartBlue.png)';
+            this.objBtn.setAttribute("src",'image/heartBlue.png');
         }else{
-            this.objBtn.style.backgroundImage = 'url(image/heartRed.png)';
+            this.objBtn.setAttribute("src",'image/heartRed.png');
         }
     },
     changeLikeState : function(){

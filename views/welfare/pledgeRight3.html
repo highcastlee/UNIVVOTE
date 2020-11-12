@@ -4,11 +4,11 @@
     <div class='pledge-text'><pre></pre></div>      
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked12 %}
-        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-red' src='#'>
+        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-red' src='image/heartRed.png'>
         {% elseif user.userId %}
-        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-blue' src='#'>
+        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-blue' src='image/heartBlue.png'>
         {% else %}
-        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='welfareLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='image/heartBlue.png'>
         {% endif %}        
         <span id='welfareLikeCountRight-03' class='pledge-like-count'>0</span>
     </div>

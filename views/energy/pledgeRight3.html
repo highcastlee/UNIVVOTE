@@ -7,11 +7,11 @@
     </div>        
     <div class='pledge-like-box'>
         {% if user.userId and condition.isLiked36 %}
-        <img id='energyLikeBtnRight-03' class='pledge-like-btn-red' src='#'>
+        <img id='energyLikeBtnRight-03' class='pledge-like-btn-red' src='image/heartRed.png'>
         {% elseif user.userId %}
-        <img id='energyLikeBtnRight-03' class='pledge-like-btn-blue' src='#'>
+        <img id='energyLikeBtnRight-03' class='pledge-like-btn-blue' src='image/heartBlue.png'>
         {% else %}
-        <img id='energyLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='#'>
+        <img id='energyLikeBtnRight-03' class='pledge-like-btn-blue unSubmit' src='image/heartBlue.png'>
         {% endif %}        
         <span id='energyLikeCountRight-03' class='pledge-like-count'>0</span>
     </div>
