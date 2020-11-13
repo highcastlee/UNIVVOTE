@@ -810,6 +810,7 @@ button:focus{
     height: 70rem;
     margin: 0 auto;
     overflow: hidden;
+    /* overflow-x: scroll; */
 }
 #slide-list{
     display: flex;
@@ -817,6 +818,9 @@ button:focus{
     justify-content: left;
     width: 280rem;
 }
+/* ::-webkit-scrollbar{
+    display: none;
+} */
 .slide-section{
     width: 35rem;
     margin: 0;
